@@ -5,24 +5,29 @@ Controle de Perigo
 - Desktop para Delegacia - ElectronJS
 
 Telas:
-- Tela de Autenticação
-- Tela de Cadastro de Ocorrencia 
-(Nome, Localização, Data, Hora, Relato, Tipo de Ocorrencia)
+- Tela de Autenticação - Geovanne
 
-- Tela de Detalhes da Ocorrencia
-- Tela com Delegacias mais Proximas
-- Tela com Mapa de Ocorrencias
-- Tela de Cadastro de Usuarios
-- Tela de Dashboard
- -- Quantidade de Ocorrencia por Bairro
- -- Quantidade de Ocorrencia por Cidade
- -- Quantidade de Vitimas
+- Tela de Cadastro de Ocorrencia  - Paulo
+(Nome, Localização, Data, Hora, Relato, Tipo de Ocorrencia)
+- Tela de Detalhes da Ocorrencia - Paulo
+
+- Tela com Delegacias mais Proximas - Emmille
+- Tela com Mapa de Ocorrencias - Bernardo
+
+- Tela de Cadastro de Usuarios - Marcelo
 Cada Usuario possui sua permissão:
 - SuperAdmin
 - Administrador
 - Operador
 - Vitima
 
+- Tela de Dashboard - Jair
+ -- Quantidade de Ocorrencia por Bairro
+ -- Quantidade de Ocorrencia por Cidade
+ -- Quantidade de Vitimas
+
+
+---------------------------------------------------------
 
 Tecnologias:
 Api
