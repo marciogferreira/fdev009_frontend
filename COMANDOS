@@ -1,0 +1,4 @@
+npm create vite@latest
+
+// Rotas
+npm i react-router-dom

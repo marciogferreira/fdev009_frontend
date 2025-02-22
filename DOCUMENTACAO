@@ -1,0 +1,29 @@
+Controle de Perigo
+- Frontend
+- Backend + Banco
+- Aplicativo Expo e React Native
+- Desktop para Delegacia - ElectronJS
+
+Telas:
+- Tela de Autenticação
+- Tela de Cadastro de Ocorrencia 
+(Nome, Localização, Data, Hora, Relato, Tipo de Ocorrencia)
+
+- Tela de Detalhes da Ocorrencia
+- Tela com Delegacias mais Proximas
+- Tela com Mapa de Ocorrencias
+- Tela de Cadastro de Usuarios
+- Tela de Dashboard
+ -- Quantidade de Ocorrencia por Bairro
+ -- Quantidade de Ocorrencia por Cidade
+ -- Quantidade de Vitimas
+Cada Usuario possui sua permissão:
+- SuperAdmin
+- Administrador
+- Operador
+- Vitima
+
+
+Tecnologias:
+Api
+Geolocalização
