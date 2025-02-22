@@ -27,6 +27,13 @@ Cada Usuario possui sua permissão:
  -- Quantidade de Vitimas
 
 
+- Tela de Doações - Alber
+
+A tela deve ter um botão de doação com um campo de valor.
+ao preencher o valor, o sistema deve apresentar um modal pedindo 
+os dados do cartao de credito. 
+A integração deve ser feita via PagSeguro.
+
 ---------------------------------------------------------
 
 Tecnologias:
