@@ -1,22 +1,40 @@
-import styles from '../LoginPage/Login.module.css';
 import imgCar from './img/img_car.png';
 
 export default function LoginPage() {
     return (
-        <section className={styles.sec}>
-        <div>
-            <h2>Login Page</h2>
-            <figure>
-                <img className={styles.imagem_car}   src={imgCar} alt="Carro" />
-            </figure>
-            <form className={styles.formulario}>
-                <label className={styles.lbl} for="username"><strong>usuario</strong></label>
-                <input className={styles.inp} type="text" id="username" name="username" required />
-                <label className={styles.lbl} for="password"><strong>senha</strong></label>
-                <input className={styles.inp} type="password" id="password" name="password" required />
-                <button className={styles.btn_logar} type="submit" id="logar">Login</button>
-            </form>
-        </div>
-        </ section>
-    )
-}
+        <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
+      <div className="login-container bg-warning p-4 rounded shadow text-center">
+        {/* Ícone do Login */}
+        <img
+          src={imgCar}
+          alt="Login Icon"
+          className="mb-3"
+          width="90"
+        />
+        <h3 className="text-dark">Login Page</h3>
+
+        {/* Formulário */}
+        <form>
+          <div className="mb-3">
+            <input type="text" className="form-control" placeholder="Usuário" required />
+          </div>
+          <div className="mb-3">
+            <input type="password" className="form-control" placeholder="Senha" required />
+          </div>
+          <button type="submit" className="btn btn-dark w-100">
+            Login
+          </button>
+          <a href="#" className="d-block mt-2 text-dark text-decoration-none">
+            Esqueceu a senha?
+          </a>
+        </form>
+
+        {/* Linha divisória */}
+        <hr className="text-white my-3" />
+
+        {/* Botão de Login com Google */}
+        <button className="btn btn-danger w-100">Acessar com o Google</button>
+      </div>
+    </div>
+  );
+};
