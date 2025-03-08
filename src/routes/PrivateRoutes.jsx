@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from '../pages/HomePage'
 import LoginPage from '../pages/LoginPage'
 import PainelPage from "../pages/PainelPage";
-import Categorias from "../pages/Private/Categorias";
+import Categorias from "../pages/Private/Categorias";   
 
 export default function PrivateRoutes() {
     return (
