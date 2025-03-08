@@ -4,7 +4,9 @@ export default function LayoutDefault({ children }) {
     return (
         <>
             <Menu />
-            {children}
+            <div className="container mt-3">
+                {children}
+            </div>
         </>
     )
 }

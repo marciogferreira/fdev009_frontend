@@ -5,7 +5,7 @@ export default function Menu() {
         <>
             <nav className="navbar navbar-expand-lg bg-body-tertiary">
                 <div className="container-fluid">
-                    <a className="navbar-brand" href="#">CO</a>
+                    <a className="navbar-brand" href="#">IWStore</a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                     </button>
@@ -14,13 +14,7 @@ export default function Menu() {
                         <li className="nav-item">
                             <Link to="/"  className="nav-link active">Painel</Link>
                         </li>
-                        <li className="nav-item">
-                            <Link to="/mapa-ocorrencias"  className="nav-link">Mapa de Ocorrencias</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link to="/nova-ocorrencia"  className="nav-link">Nova Ocorrencia</Link>
-                        </li>
-                  
+
                         <li className="nav-item">
                             <a className="nav-link" >Sair</a>
                         </li>
