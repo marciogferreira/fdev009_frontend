@@ -14,7 +14,9 @@ export default function Menu() {
                         <li className="nav-item">
                             <Link to="/"  className="nav-link active">Painel</Link>
                         </li>
-
+                        <li className="nav-item">
+                            <Link to="/categorias"  className="nav-link active">Categorias</Link>
+                        </li>
                         <li className="nav-item">
                             <a className="nav-link" >Sair</a>
                         </li>
