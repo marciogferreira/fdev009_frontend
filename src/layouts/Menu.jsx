@@ -13,7 +13,7 @@ export default function Menu() {
               src="./src/layouts/img/iw_branca.png"
               alt="Logo IW"
               width="90"
-              height="50"
+              height="60"
               className="d-inline-block align-items-center me-3"
             ></img>
           </Link>
