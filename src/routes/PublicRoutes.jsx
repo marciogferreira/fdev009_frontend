@@ -3,6 +3,9 @@ import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
 import Carrinho from "../pages/Carrinho";
 import Contatos from "../pages/Contatos";
+import PagamentoPage from "../pages/PagamentoPage";
+import ProdutosPage from "../pages/ProdutosPage";
+import PedidosPage from "../pages/PedidosPage";
 
 export default function PublicRoutes() {
   return (
@@ -13,6 +16,8 @@ export default function PublicRoutes() {
         <Route path="/ProdutosPage" element={<ProdutosPage />} />
         <Route path="/carrinho" element={<Carrinho />} />
         <Route path="/contatos" element={<Contatos />} />
+        <Route path="/PagamentoPage" element={<PagamentoPage />} />
+        <Route path="/PedidosPage" element={<PedidosPage />} />
       </Routes>
     </BrowserRouter>
   );
