@@ -18,12 +18,13 @@ export default function Menu() {
                             <Link to="/categorias"  className="nav-link active">Categorias</Link>
                         </li>
                         <li className="nav-item">
+                            <Link to="/Financeiro"  className="nav-link active">Financeiro</Link>
+                        </li>
+                        <li className="nav-item">
                             <a className="nav-link" >Sair</a>
                         </li>
                     </ul>
-                    <div>
-                        <button className='btn btn-success btn-sm'>Doações</button>
-                    </div>
+                   
                     </div>
                 </div>
             </nav>   
