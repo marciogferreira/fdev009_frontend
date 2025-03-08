@@ -24,9 +24,5 @@ export default function PainelPage() {
       legendToggle
     />
         </LayoutDefault>
-    )
-
-
-
-    
+    )   
 }
