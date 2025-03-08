@@ -35,8 +35,11 @@ export default function Menu() {
                 </Link>
               </li>
               <li className="nav-item">
+                <Link to="/Financeiro"  className="nav-link active">Financeiro</Link>
+            </li>
+              <li className="nav-item">
                 <Link to="/pedidos" className="nav-link active">
-                  pedidos
+                  Pedidos
                 </Link>
               </li>
               <li className="nav-item">

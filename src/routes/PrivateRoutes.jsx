@@ -3,6 +3,7 @@ import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
 import PainelPage from "../pages/PainelPage";
 import Categorias from "../pages/Private/Categorias";
+import Financeiro from "../pages/Private/Financeiro";
 import Pedidos from "../pages/Private/Pedidos";
 
 export default function PrivateRoutes() {
@@ -11,6 +12,7 @@ export default function PrivateRoutes() {
       <Routes>
         <Route path="/" element={<PainelPage />} />
         <Route path="/categorias" element={<Categorias />} />
+        <Route path="/Financeiro" element={<Financeiro />} />
         <Route path="/Pedidos" element={<Pedidos />} />
       </Routes>
     </BrowserRouter>
