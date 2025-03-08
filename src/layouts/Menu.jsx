@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 export default function Menu() {
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <nav
+        className="navbar navbar-expand-lg bg-body-tertiary"
+        data-bs-theme="dark"
+      >
         <div className="container-fluid">
           <a className="navbar-brand" href="#">
             IWStore
@@ -40,9 +43,6 @@ export default function Menu() {
                 <a className="nav-link">Sair</a>
               </li>
             </ul>
-            <div>
-              <button className="btn btn-success btn-sm">Doações</button>
-            </div>
           </div>
         </div>
       </nav>
