@@ -8,6 +8,7 @@ export default function PublicRoutes() {
             <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/login" element={<LoginPage />} />
+                <Route path="/produtos" element={<ProdutosPage />} />
             </Routes>
         </BrowserRouter>
     )
