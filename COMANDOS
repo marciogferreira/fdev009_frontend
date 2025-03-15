@@ -2,3 +2,8 @@ npm create vite@latest
 
 // Rotas
 npm i react-router-dom
+
+
+Executando JSON Server
+
+npx json-server --watch db.json
