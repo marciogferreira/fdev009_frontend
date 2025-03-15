@@ -3,7 +3,11 @@ npm create vite@latest
 // Rotas
 npm i react-router-dom
 
+npm install
+npm run dev
 
-Executando JSON Server
+::Executando JSON Server
+
+npm install json-server
 
 npx json-server --watch db.json

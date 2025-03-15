@@ -59,6 +59,11 @@ export default function Menu() {
                 </Link>
               </li>
               <li className="nav-item">
+                <Link to="/usuarios" className="nav-link active">
+                  Usuários
+                </Link>
+              </li>
+              <li className="nav-item">
                 <a className="nav-link">Sair</a>
               </li>
             </ul>
