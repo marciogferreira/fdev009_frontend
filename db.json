@@ -4,55 +4,55 @@
       "nome": "Emmille",
       "email": "emmille@gmail.com",
       "senha": "123123",
-      "id": 3
+      "id": "3"
     },
     {
       "nome": "Geovanne Matador",
       "email": "geozim@gmail.com",
       "senha": "123123",
-      "id": 4
+      "id": "4"
     },
     {
       "nome": "Alber 10",
       "email": "alber@gmail.com",
       "senha": "123123",
-      "id": 5
+      "id": "5"
     },
     {
       "nome": "Marcelo",
       "email": "marcelo@gmail.com",
       "senha": "123123",
-      "id": 6
+      "id": "6"
     },
     {
       "nome": "Bernado",
       "email": "ben@gmail.com",
       "senha": "123123",
-      "id": 7
+      "id": "7"
     },
     {
       "nome": "teste2",
       "email": "teste3@gmail.com",
       "senha": "123123",
-      "id": 9
+      "id": "9"
     }
   ],
   "categorias": [],
   "produtos": [],
   "pedidos": [
     {
-      "id": 1,
-      "usuario_id": 3,
+      "id": "1",
+      "usuario_id": 6,
       "data_hora": "2022-01-01 12:00:00",
-      "total": 100,
+      "total": 250,
       "status": "Pendente"
     },
     {
-      "id": 2,
+      "id": "2",
       "usuario_id": 4,
-      "data_hora": "15/03/2025",
-      "total": 150,
-      "status": "Aberto"
+      "data_hora": "2022-01-01 12:00:00",
+      "total": 250,
+      "status": "Pendente"
     }
   ],
   "itens_pedidos": [],
