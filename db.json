@@ -41,18 +41,11 @@
   "produtos": [],
   "pedidos": [
     {
-      "id": "1",
-      "usuario_id": 6,
+      "id": "bd65",
+      "usuario_id": 3,
       "data_hora": "2022-01-01 12:00:00",
-      "total": 250,
-      "status": "Pendente"
-    },
-    {
-      "id": "2",
-      "usuario_id": 4,
-      "data_hora": "2022-01-01 12:00:00",
-      "total": 250,
-      "status": "Pendente"
+      "total": 150,
+      "status": "Aberto"
     }
   ],
   "itens_pedidos": [],
