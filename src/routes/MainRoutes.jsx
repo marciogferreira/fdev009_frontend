@@ -1,9 +1,12 @@
-import { useState } from "react"
+import { useContext } from "react"
 import PublicRoutes from "./PublicRoutes";
 import PrivateRoutes from "./PrivateRoutes";
-export default function MainRoutes() {
-    const [isLogged, setIsLogged] = useState(true);
+import { AuthContext } from "../App";
 
+export default function MainRoutes() {
+
+    const { isLogged } = useContext(AuthContext)
+    
     if(isLogged === false) {
         return <PublicRoutes />
     }

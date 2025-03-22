@@ -30,6 +30,7 @@ export default function PrivateRoutes() {
         <Route path="/usuarios/editar/:id" element={<UsuariosForm />} />
         <Route path="/pedidos/novo" element={<PedidosForm />} />
         <Route path="/pedidos/editar/:id" element={<PedidosForm />} />
+        <Route path="*" element={<h1>NOt FOund</h1>} />
       </Routes>
     </BrowserRouter>
   );
