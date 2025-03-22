@@ -3,12 +3,12 @@ import LayoutDefault from "../../layouts/LayoutDefault";
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
-function ProdutosPage() {
+function CategoriasPage() {
     const [lista, setLista] = useState([]);
     const navigate = useNavigate();
     
     async function getLista() {
-        const response = await axios.get('http://localhost:3000/produtos')
+        const response = await axios.get('http://localhost:3000/categorias')
         setLista(response.data)
         console.log(response.data)
     }
@@ -25,8 +25,8 @@ function ProdutosPage() {
               })
               .then(async (willDelete) => {
                 if (willDelete) {
-                    await axios.delete('http://localhost:3000/produtos/'+id)
-                    swal("Sucesso!", "Produto excluído com Sucesso.", "success");  
+                    await axios.delete('http://localhost:3000/usuarios/'+id)
+                    swal("Sucesso!", "Categoria excluída com Sucesso.", "success");  
                     getLista()
                 }
             });
@@ -41,23 +41,22 @@ function ProdutosPage() {
 
     return (
         <LayoutDefault>
-            <button className="btn btn-success btn-sm" onClick={() => navigate('/produtos/novo')}>Novo Produto</button>
+            <button className="btn btn-success btn-sm" onClick={() => navigate('/categorias/novo')}>Nova Catgegoria</button>
             <table className="table">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Descrição</th>
-                        <th>Validade</th>
+                        <th>Categoria</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
                     {lista.map((item) => (
                         <tr>
                             <td>{item.id}</td>
-                            <td>{item.descricao}</td>
-                            <td>{item.validade}</td>
+                            <td>{item.categoria}</td>
                             <td>
-                                <button className="btn btn-primary btn-sm" onClick={() => navigate(`/usuarios/editar/${item.id}`)}>
+                                <button className="btn btn-primary btn-sm" onClick={() => navigate(`/categorias/editar/${item.id}`)}>
                                     Editar
                                 </button>
                                 &nbsp;
@@ -71,4 +70,4 @@ function ProdutosPage() {
     )
 }
 
-export default ProdutosPage;
+export default CategoriasPage;
