@@ -4,27 +4,27 @@ import LayoutDefault from '../../../layouts/LayoutDefault';
 const pagamentos = [
   {
     codigo: '001',
-    valor: 'R$ 140,00',
-    data: '08-03-2025',
-    status: 'Pago',
+    valor: 'R$ 00,00',
+    data: '00-00-0000',
+    status: '',
   },
   {
     codigo: '002',
-    valor: 'R$ 70,00',
-    data: '08-03-2025',
-    status: 'Pago',
+    valor: 'R$ 00,00',
+    data: '00-00-0000',
+    status: '',
   },
   {
     codigo: '003',
-    valor: 'R$ 90,00',
-    data: '08-03-2025',
-    status: 'Pago',
+    valor: 'R$ 00,00',
+    data: '00-00-0000',
+    status: '',
   },
   {
     codigo: '004',
-    valor: 'R$ 150,00',
-    data: '09-03-2025',
-    status: 'Pendente',
+    valor: 'R$ 00,00',
+    data: '00-00-0000',
+    status: '',
   },
 ];
 

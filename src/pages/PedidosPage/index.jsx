@@ -1,8 +1,10 @@
-function PedidosPage() {
+import LayoutDefault from "../../layouts/LayoutDefault";
+function Pedidos() {
   return (
-    <>
-      <h1>Pedidos Page</h1>
-    </>
+    <LayoutDefault>
+      <h1>Pedidos</h1>
+    </LayoutDefault>
   );
 }
-export default PedidosPage;
+
+export default Pedidos;
