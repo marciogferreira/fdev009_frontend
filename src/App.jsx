@@ -1,5 +1,6 @@
 import { createContext, useState } from "react";
-import MainRoutes from "./routes/MainRoutes"
+import { BrowserRouter } from "react-router-dom";  // Importe o BrowserRouter
+import MainRoutes from "./routes/MainRoutes";
 
 export const AuthContext = createContext({
     isLogged: false,
@@ -10,8 +11,11 @@ function App() {
   const [isLogged, setIsLogged] = useState(false);
   return (
     <AuthContext.Provider value={{ isLogged, setIsLogged }}>
-      <MainRoutes />
+      <BrowserRouter>  {/* Envolva as rotas com o BrowserRouter */}
+        <MainRoutes />
+      </BrowserRouter>
     </AuthContext.Provider>
-  )
+  );
 }
-export default App
+
+export default App;
