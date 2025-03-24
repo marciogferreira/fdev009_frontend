@@ -1,6 +1,17 @@
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../App";
 
 export default function Menu() {
+
+  const { setIsLogged } = useContext(AuthContext)
+  const navigate = useNavigate();
+
+  function logout() {
+    setIsLogged(false)
+    navigate('/')
+  }
+
   return (
     <>
       <nav
@@ -64,7 +75,7 @@ export default function Menu() {
                 </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link">Sair</a>
+                <a href="#" className="nav-link" onClick={() => logout()}>Sair</a>
               </li>
             </ul>
           </div>
