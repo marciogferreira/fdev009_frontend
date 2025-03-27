@@ -1,6 +1,9 @@
 import { Routes, Route } from "react-router-dom";
-import HomePage from "../pages/HomePage";  // Certifique-se de importar a HomePage corretamente
-import Produtos from "../pages/HomePage/Produtos";  // Ajuste no caminho para Produtos
+import HomePage from "../pages/HomePage";  
+import Produtos from "../pages/HomePage/Produtos";  
+import Categorias from "../pages/HomePage/Categorias";  
+import MaisVendidos from "../pages/HomePage/MaisVendidos";  
+import Novidades from "../pages/HomePage/Novidades";  {/* Adicionada a importação */}
 import LoginPage from "../pages/LoginPage";
 import Carrinho from "../pages/Carrinho";
 import Contatos from "../pages/Contatos";
@@ -11,10 +14,13 @@ export default function PublicRoutes() {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/login" element={<LoginPage />} />
-      <Route path="/produtos" element={<Produtos />} />  {/* Corrigido */}
+      <Route path="/produtos" element={<Produtos />} />
+      <Route path="/categorias" element={<Categorias />} />
+      <Route path="/mais-vendidos" element={<MaisVendidos />} />
+      <Route path="/novidades" element={<Novidades />} />  {/* Adicionada a rota */}
       <Route path="/carrinho" element={<Carrinho />} />
       <Route path="/contatos" element={<Contatos />} />
-      <Route path="/pagamento" element={<PagamentoPage />} />  {/* Corrigido */}
+      <Route path="/pagamento" element={<PagamentoPage />} />
     </Routes>
   );
 }
