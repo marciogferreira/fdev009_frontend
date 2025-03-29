@@ -154,7 +154,7 @@ export default function HomePage() {
                 className="d-block"
                 alt="Banner PNG"
                 style={{
-                  width: "90%",
+                  width: "100%",
                   height: "500px",
                   margin: "0 auto",
                   objectFit: "contain",
@@ -167,7 +167,7 @@ export default function HomePage() {
                   top: "50%",
                   left: "10%", // Move o texto para a esquerda
                   transform: "translateY(-50%)", // Alinha verticalmente ao centro
-                  color: "black", // Cor preta para o texto
+                  color: "black", // Cor do texto
                   fontSize: "2rem",
                   fontWeight: "bold",
                 }}
@@ -185,7 +185,7 @@ export default function HomePage() {
                 className="d-block"
                 alt="Banner PNG"
                 style={{
-                  width: "90%",
+                  width: "100%",
                   height: "500px",
                   margin: "0 auto",
                   objectFit: "contain",
@@ -198,7 +198,7 @@ export default function HomePage() {
                   top: "50%",
                   left: "10%", // Move o texto para a esquerda
                   transform: "translateY(-50%)", // Alinha verticalmente ao centro
-                  color: "black", // Cor preta para o texto
+                  color: "#black", // Cor do texto
                   fontSize: "2rem",
                   fontWeight: "bold",
                 }}
