@@ -32,7 +32,7 @@ export default function Novidades() {
           {/* Card 1 - Nova Chegada */}
           <div className="col-md-6">
             <div className="card mb-4">
-              <img src="https://via.placeholder.com/500x300" className="card-img-top" alt="Nova Chegada 1" />
+              <img src="https://dummyimage.com/600x400/dee2e6/6c757d.jpg" className="card-img-top" alt="Nova Chegada 1" />
               <div className="card-body">
                 <h5 className="card-title">Nova Chegada 1 - Inovação no Mercado</h5>
                 <p className="card-text">Acabamos de lançar este produto revolucionário, não perca a chance de conhecer mais!</p>
@@ -43,7 +43,7 @@ export default function Novidades() {
           {/* Card 2 - Nova Chegada */}
           <div className="col-md-6">
             <div className="card mb-4">
-              <img src="https://via.placeholder.com/500x300" className="card-img-top" alt="Nova Chegada 2" />
+              <img src="https://dummyimage.com/600x400/dee2e6/6c757d.jpg" className="card-img-top" alt="Nova Chegada 2" />
               <div className="card-body">
                 <h5 className="card-title">Nova Chegada 2 - O Futuro Está Aqui</h5>
                 <p className="card-text">Este é o produto do futuro! Conheça a nova tendência de tecnologia em nossa loja.</p>

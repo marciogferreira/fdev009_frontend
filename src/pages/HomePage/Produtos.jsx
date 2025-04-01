@@ -43,7 +43,7 @@ export default function HomePage() {
             <div key={id} className="col-md-3">
               <div className="card">
                 <img
-                  src="https://via.placeholder.com/150"
+                  src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
                   className="card-img-top"
                   alt={`Produto ${id}`}
                 />

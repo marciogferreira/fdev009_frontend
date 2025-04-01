@@ -29,10 +29,10 @@ export default function CategoriasPage() {
         <h2 className="mb-4 text-center">Categorias</h2>
         <div className="row">
           {[
-            { nome: "Roupas", img: "https://via.placeholder.com/150" },
-            { nome: "Eletrônicos", img: "https://via.placeholder.com/150" },
-            { nome: "Acessórios", img: "https://via.placeholder.com/150" },
-            { nome: "Calçados", img: "https://via.placeholder.com/150" }
+            { nome: "Roupas", img: "https://dummyimage.com/450x300/dee2e6/6c757d.jpg" },
+            { nome: "Eletrônicos", img: "https://dummyimage.com/450x300/dee2e6/6c757d.jpg" },
+            { nome: "Acessórios", img: "https://dummyimage.com/450x300/dee2e6/6c757d.jpg" },
+            { nome: "Calçados", img: "https://dummyimage.com/450x300/dee2e6/6c757d.jpg" }
           ].map((categoria, index) => (
             <div key={index} className="col-md-3">
               <div className="card shadow">

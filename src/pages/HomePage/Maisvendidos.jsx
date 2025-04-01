@@ -32,7 +32,7 @@ export default function MaisVendidos() {
           {/* Card 1 - Produto Mais Vendido */}
           <div className="col-md-6">
             <div className="card mb-4">
-              <img src="https://via.placeholder.com/500x300" className="card-img-top" alt="Produto 1" />
+              <img src="https://dummyimage.com/600x400/dee2e6/6c757d.jpg" className="card-img-top" alt="Produto 1" />
               <div className="card-body">
                 <h5 className="card-title">Produto 1 - Super Vendido</h5>
                 <p className="card-text">Este é o produto mais vendido da nossa loja.</p>
@@ -44,7 +44,7 @@ export default function MaisVendidos() {
           {/* Card 2 - Produto Mais Vendido */}
           <div className="col-md-6">
             <div className="card mb-4">
-              <img src="https://via.placeholder.com/500x300" className="card-img-top" alt="Produto 2" />
+              <img src="https://dummyimage.com/600x400/dee2e6/6c757d.jpg" className="card-img-top" alt="Produto 2" />
               <div className="card-body">
                 <h5 className="card-title">Produto 2 - Best Seller</h5>
                 <p className="card-text">Este produto está entre os mais vendidos, aproveite a oferta exclusiva.</p>
