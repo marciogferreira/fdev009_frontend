@@ -315,6 +315,7 @@ export default function HomePage() {
         </div>
       )}
 
+      {/* Modal Carrinho */}
       {modalCarrinho && (
         <div className="modal fade show" style={{ display: "block" }}>
           <div className="modal-dialog">
@@ -331,16 +332,42 @@ export default function HomePage() {
                 {carrinho.length === 0 ? (
                   <p>O carrinho está vazio</p>
                 ) : (
-                  <ul>
+                  <ul className="list-group">
                     {carrinho.map((item) => (
-                      <li key={item.id}>
-                        {item.nome} - {item.quantidade}x R$
-                        {item.preco.toFixed(2)}
+                      <li
+                        key={item.id}
+                        className="list-group-item d-flex justify-content-between align-items-center"
+                        style={{ border: "none" }} // Remove as bordas dos itens
+                      >
+                        <div>
+                          {item.nome} - {item.quantidade}x R$
+                          {item.preco.toFixed(2)}
+                        </div>
+                        <button
+                          className="btn btn-sm"
+                          onClick={() => removerProdutoCarrinho(item)}
+                          style={{ background: "none", border: "none", padding: 0 }}
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            fill="black"
+                            className="bi bi-trash"
+                            viewBox="0 0 16 16"
+                          >
+                            <path d="M5.5 5.5A.5.5 0 0 1 6 5h4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5H6a.5.5 0 0 1-.5-.5v-7z" />
+                            <path
+                              fillRule="evenodd"
+                              d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1 0-2h3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1h3a1 1 0 0 1 1 1zm-2 1H3v9a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4z"
+                            />
+                          </svg>
+                        </button>
                       </li>
                     ))}
                   </ul>
                 )}
-                <p>Total: R${calcularTotal()}</p>
+                <p className="mt-3">Total: R${calcularTotal()}</p>
               </div>
               <div className="modal-footer">
                 <button className="btn btn-primary">Finalizar Compra</button>
