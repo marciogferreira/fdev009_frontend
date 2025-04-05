@@ -84,22 +84,99 @@ export default function HomePage() {
         </div>
       </nav>
 
-      <div id="carouselExample" className="carousel slide" data-bs-ride="carousel">
+      {/* Carrossel */}
+      <div
+        id="carouselExample"
+        className="carousel slide"
+        data-bs-ride="carousel"
+      >
         <div className="carousel-inner">
+          {/* Primeiro item do carrossel */}
           <div className="carousel-item active">
             <div style={{ textAlign: "center", position: "relative" }}>
-              <img src="/banner1.png" className="d-block" alt="Banner PNG" style={{ width: "100%", height: "500px", objectFit: "contain" }} />
-              <div style={{ position: "absolute", top: "50%", left: "10%", transform: "translateY(-50%)", color: "black", fontSize: "2rem", fontWeight: "bold" }}>
+              <img
+                src="/banner1.png"
+                className="d-block"
+                alt="Banner PNG"
+                style={{
+                  width: "100%",
+                  height: "500px",
+                  margin: "0 auto",
+                  objectFit: "contain",
+                }}
+              />
+              {/* Texto sobre a imagem */}
+              <div
+                style={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "10%", // Move o texto para a esquerda
+                  transform: "translateY(-50%)", // Alinha verticalmente ao centro
+                  color: "black", // Cor do texto
+                  fontSize: "2rem",
+                  fontWeight: "bold",
+                }}
+              >
+                Kardoshstore.com.br
+              </div>
+            </div>
+          </div>
+
+          {/* Segundo item do carrossel */}
+          <div className="carousel-item">
+            <div style={{ textAlign: "center", position: "relative" }}>
+              <img
+                src="/banner1.png"
+                className="d-block"
+                alt="Banner PNG"
+                style={{
+                  width: "100%",
+                  height: "500px",
+                  margin: "0 auto",
+                  objectFit: "contain",
+                }}
+              />
+              {/* Texto sobre a imagem */}
+              <div
+                style={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "10%", // Move o texto para a esquerda
+                  transform: "translateY(-50%)", // Alinha verticalmente ao centro
+                  color: "#black", // Cor do texto
+                  fontSize: "2rem",
+                  fontWeight: "bold",
+                }}
+              >
                 Kardoshstore.com.br
               </div>
             </div>
           </div>
         </div>
-        <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+
+        {/* Botões de navegação do carrossel */}
+        <button
+          className="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExample"
+          data-bs-slide="prev"
+        >
+          <span
+            className="carousel-control-prev-icon"
+            aria-hidden="true"
+          ></span>
         </button>
-        <button className="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-          <span className="carousel-control-next-icon" aria-hidden="true"></span>
+
+        <button
+          className="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExample"
+          data-bs-slide="next"
+        >
+          <span
+            className="carousel-control-next-icon"
+            aria-hidden="true"
+          ></span>
         </button>
       </div>
 
