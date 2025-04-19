@@ -27,13 +27,12 @@ const LoginPage = () => {
    } else {
     alert("Login ou Senha Incorreto")
    }
-   
   };
 
   return (
     <div className="container d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
       <div className='row'>
-        <div className=" border p-4 rounded">
+        <div className="border p-5 rounded" style={{ width: '400px', boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.1)' }}>
           <h2 className="text-center mb-4">Entrar</h2>
           <Formik
             initialValues={{ email: '', password: '' }}
@@ -54,7 +53,7 @@ const LoginPage = () => {
                     className="form-control"
                   />
                   <div className='error'>
-                        <ErrorMessage name='email' />
+                    <ErrorMessage name='email' />
                   </div>
                 </div>
                 <div className='mb-3'>
@@ -64,12 +63,12 @@ const LoginPage = () => {
                     placeholder="Digite sua senha"
                     name="password"
                     className="form-control"
-                  />         
+                  />
                   <div className='error'>
-                        <ErrorMessage name='password' />
-                  </div>      
+                    <ErrorMessage name='password' />
                   </div>
-                <button className="btn btn-primary" type="submit" >
+                </div>
+                <button className="btn" style={{ backgroundColor: '#e71663', color: '#fff' }} type="submit">
                   Entrar
                 </button>
               </Form>

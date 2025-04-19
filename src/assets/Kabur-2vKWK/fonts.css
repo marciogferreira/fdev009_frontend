@@ -1,0 +1,10 @@
+@font-face {
+  font-family: 'Kabur-2vKWK';
+  src: url('./Kabur-2vKWK.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.carousel-nowharehouse {
+  font-family: 'Kabur-2vKWK', sans-serif;
+}

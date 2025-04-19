@@ -1,0 +1,61 @@
+.custom-navbar {
+    background-color: #181818 !important;
+  }
+  
+  .custom-navbar .nav-link,
+  .custom-navbar .navbar-brand {
+    color: white !important;
+  }
+  
+  .custom-navbar .nav-link:hover,
+  .custom-navbar .navbar-brand:hover {
+    color: #e0e0e0 !important; /* tom mais claro no hover */
+  }
+  
+  
+  .card-img-container {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    background-color: #e71663;
+    overflow: hidden;
+  }
+  
+  .background-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .overlay-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80%;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: contain;
+    pointer-events: none;
+  }
+  .product-img-container {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  
+  .product-img-container img.card-img-top {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  
+  .overlay-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* ou "cover" se quiser preencher */
+    z-index: 2;
+  }
+  
