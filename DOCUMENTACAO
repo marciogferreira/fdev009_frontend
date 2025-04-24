@@ -1,16 +1,38 @@
-//Documentação Técnica – KardoshStore:
 
-// Biblioteca	     Versão	                              Função	                                                 Fonte
-// React	         ^18.x	       Biblioteca principal para construção da interface SPA.	          https://reactjs.org
-//React Router DOM	 ^6.x	       Controle de rotas e navegação de páginas.	                      https://reactrouter.com
-//Bootstrap	         ^5.x	       Estilização responsiva de componentes e layout.	                  https://getbootstrap.com
-//LocalStorage API	               Nativo	Armazenamento local do carrinho de compras.	              https://developer.mozilla.org/pt-BR/docs/Web/API/Window/localStorage
+-------------------------------------
+Documentação Técnica – KardoshStore:
+-------------------------------------
 
-//Nome da Fonte	Caminho	Formato	Uso;
-//Kabur-2vKWK	- livre direito comercial.	Fonte customizada para os banners do carrossel;
+Bibliotecas:                               Função:	
+-React                     Biblioteca principal para construção da interface SPA.
+-React Router DOM          Controle de rotas e navegação de páginas.
+-Bootstrap                 Estilização responsiva de componentes e layout.
+-LocalStorage API          Nativo	Armazenamento local do carrinho de compras.
 
-//Imagens - livre de direitos autorais;
-//phaceholder https://dummyimage.com -Livre de direitos autorais. Serviço gratuito de geração de imagens de placeholder para testes e prototipagem;
+Fonte:
+https://reactjs.org
+https://reactrouter.com
+https://getbootstrap.com
+https://developer.mozilla.org/pt-BR/docs/Web/API/Window/localStorage
 
-// Frontend- Desenvolvido por A.dev-2025. Tel: 85.989715456; 
-// Licenciado para Turma Fdev009- IwTraining Educação Avançada. Para estudos e testes. 
+
+Nome da Fonte	Caminho	Formato	Uso;
+Kabur-2vKWK	- livre direito comercial, gratuito.Fonte customizada para os banners do carrossel;
+
+Imagens - livre de direitos autorais;
+Phaceholder https://dummyimage.com -livre de direitos autorais. Serviço gratuito de geração de imagens de placeholder para testes e prototipagem;
+O React Permitiu criar componentes reutilizáveis e reativos:
+
+🔧 UseState
+Usado para controlar estados como:
+
+estoque → onde você armazena a quantidade de produtos disponíveis;
+
+carrinho → produtos adicionados;
+
+produtoSelecionado, quantidade → controle da seleção e quantidade no modal.
+
+
+Frontend- Desenvolvido por A.Dev-2025. Tel: 85.989715456; 
+Licenciado para Turma Fdev009- IwTraining Educação Avançada. Para estudos e testes. 
+

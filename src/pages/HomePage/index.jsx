@@ -5,41 +5,16 @@ import './app.css';
 import "../../assets/Kabur-2vKWK/fonts.css";
 
 
-
-const produtos = [
-  {
-    id: 1,
-    nome: "Hambúrguer Artesanal",
-    preco: 6.50,
-    img: "https://dummyimage.com/450x300/e71663/e71663.jpg",
-    overlay: "src/assets/produto1.png"
-  },
-  {
-    id: 2,
-    nome: "Produto 2",
-    preco: 75,
-    img: "https://dummyimage.com/450x300/e71663/e71663.jpg",
-    overlay: ""
-  },
-  {
-    id: 3,
-    nome: "Produto 3",
-    preco: 100,
-    img: "https://dummyimage.com/450x300/e71663/e71663.jpg",
-    overlay: ""
-  },
-  {
-    id: 4,
-    nome: "Produto 4",
-    preco: 120,
-    img: "https://dummyimage.com/450x300/e71663/e71663.jpg",
-    overlay: ""
-  },
-];
-
-
 export default function HomePage() {
-  const [carrinho, setCarrinho] = useState(() => {
+const [estoque, setEstoque] = useState([
+  { id: 1, nome: "Hambúrguer Artesanal", preco: 6.50, img: "https://dummyimage.com/450x300/e71663/e71663.jpg", overlay: "src/assets/produto1.png", quantidadeDisponivel: 30 },
+  { id: 2, nome: "Produto 2", preco: 75, img: "https://dummyimage.com/450x300/e71663/e71663.jpg", overlay: "", quantidadeDisponivel: 0 },
+  { id: 3, nome: "Produto 3", preco: 100, img: "https://dummyimage.com/450x300/e71663/e71663.jpg", overlay: "", quantidadeDisponivel: 0 },
+  { id: 4, nome: "Produto 4", preco: 120, img: "https://dummyimage.com/450x300/e71663/e71663.jpg", overlay: "", quantidadeDisponivel: 0 },
+]);
+
+
+    const [carrinho, setCarrinho] = useState(() => {
     const carrinhoSalvo = localStorage.getItem("carrinho");
     return carrinhoSalvo ? JSON.parse(carrinhoSalvo) : [];
   });
@@ -62,11 +37,20 @@ export default function HomePage() {
   };
 
   const adicionarProdutoAoCarrinho = () => {
+    const produtoId = produtoSelecionado.id;
+    const estoqueAtual = estoque.find((p) => p.id === produtoId);
+  
+    if (quantidade > estoqueAtual.quantidadeDisponivel) {
+      alert("Quantidade solicitada excede o estoque disponível!");
+      return;
+    }
+  
+    // Atualiza carrinho
     setCarrinho((prev) => {
-      const itemExistente = prev.find((item) => item.id === produtoSelecionado.id);
+      const itemExistente = prev.find((item) => item.id === produtoId);
       if (itemExistente) {
         return prev.map((item) =>
-          item.id === produtoSelecionado.id
+          item.id === produtoId
             ? { ...item, quantidade: item.quantidade + quantidade }
             : item
         );
@@ -74,8 +58,19 @@ export default function HomePage() {
         return [...prev, { ...produtoSelecionado, quantidade }];
       }
     });
+  
+    // Atualiza estoque
+    setEstoque((prev) =>
+      prev.map((item) =>
+        item.id === produtoId
+          ? { ...item, quantidadeDisponivel: item.quantidadeDisponivel - quantidade }
+          : item
+      )
+    );
+  
     setProdutoSelecionado(null);
   };
+  
 
   const removerProdutoCarrinho = (produto) => {
     setCarrinho((prev) => prev.filter((item) => item.id !== produto.id));
@@ -180,8 +175,8 @@ export default function HomePage() {
       <section className="py-5">
         <div className="container">
           <div className="row">
-            {produtos.map((produto) => (
-              <div key={produto.id} className="col-md-3">
+          {estoque.map((produto) => (
+                <div key={produto.id} className="col-md-3">
                 <div className="card">
                 <div className="card-img-container">
   <img className="background-img" src={produto.img} alt="Fundo" />
@@ -193,6 +188,7 @@ export default function HomePage() {
                   <div className="card-body text-center">
                     <h5 className="fw-bolder">{produto.nome}</h5>
                     <p>R${produto.preco.toFixed(2)}</p>
+                    <p>Estoque: {produto.quantidadeDisponivel}</p>
                     <button className="btn btn-outline-dark" onClick={() => adicionarAoCarrinho(produto)}>Adicionar ao Carrinho</button>
                   </div>
                 </div>
