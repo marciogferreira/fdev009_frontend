@@ -4,17 +4,20 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 import "../../assets/Kabur-2vKWK/fonts.css";
 
-
 export default function HomePage() {
-const [estoque, setEstoque] = useState([
-  { id: 1, nome: "Hambúrguer Artesanal", preco: 6.50, img: "https://dummyimage.com/450x300/e71663/e71663.jpg", overlay: "src/assets/produto1.png", quantidadeDisponivel: 30 },
-  { id: 2, nome: "Produto 2", preco: 75, img: "https://dummyimage.com/450x300/e71663/e71663.jpg", overlay: "", quantidadeDisponivel: 0 },
-  { id: 3, nome: "Produto 3", preco: 100, img: "https://dummyimage.com/450x300/e71663/e71663.jpg", overlay: "", quantidadeDisponivel: 0 },
-  { id: 4, nome: "Produto 4", preco: 120, img: "https://dummyimage.com/450x300/e71663/e71663.jpg", overlay: "", quantidadeDisponivel: 0 },
-]);
+  const [estoque, setEstoque] = useState(() => {
+    const estoqueSalvo = localStorage.getItem("estoque");
+    return estoqueSalvo
+      ? JSON.parse(estoqueSalvo)
+      : [
+          { id: 1, nome: "Hambúrguer Artesanal", preco: 6.5, img: "https://dummyimage.com/450x300/e71663/e71663.jpg", overlay: "src/assets/produto1.png", quantidadeDisponivel: 30 },
+          { id: 2, nome: "Produto 2", preco: 75, img: "https://dummyimage.com/450x300/e71663/e71663.jpg", overlay: "", quantidadeDisponivel: 0 },
+          { id: 3, nome: "Produto 3", preco: 100, img: "https://dummyimage.com/450x300/e71663/e71663.jpg", overlay: "", quantidadeDisponivel: 0 },
+          { id: 4, nome: "Produto 4", preco: 120, img: "https://dummyimage.com/450x300/e71663/e71663.jpg", overlay: "", quantidadeDisponivel: 0 },
+        ];
+  });
 
-
-    const [carrinho, setCarrinho] = useState(() => {
+  const [carrinho, setCarrinho] = useState(() => {
     const carrinhoSalvo = localStorage.getItem("carrinho");
     return carrinhoSalvo ? JSON.parse(carrinhoSalvo) : [];
   });
@@ -26,6 +29,10 @@ const [estoque, setEstoque] = useState([
   useEffect(() => {
     localStorage.setItem("carrinho", JSON.stringify(carrinho));
   }, [carrinho]);
+
+  useEffect(() => {
+    localStorage.setItem("estoque", JSON.stringify(estoque));
+  }, [estoque]);
 
   const adicionarAoCarrinho = (produto) => {
     setProdutoSelecionado(produto);
@@ -39,12 +46,12 @@ const [estoque, setEstoque] = useState([
   const adicionarProdutoAoCarrinho = () => {
     const produtoId = produtoSelecionado.id;
     const estoqueAtual = estoque.find((p) => p.id === produtoId);
-  
+
     if (quantidade > estoqueAtual.quantidadeDisponivel) {
       alert("Quantidade solicitada excede o estoque disponível!");
       return;
     }
-  
+
     // Atualiza carrinho
     setCarrinho((prev) => {
       const itemExistente = prev.find((item) => item.id === produtoId);
@@ -58,7 +65,7 @@ const [estoque, setEstoque] = useState([
         return [...prev, { ...produtoSelecionado, quantidade }];
       }
     });
-  
+
     // Atualiza estoque
     setEstoque((prev) =>
       prev.map((item) =>
@@ -67,13 +74,21 @@ const [estoque, setEstoque] = useState([
           : item
       )
     );
-  
+
     setProdutoSelecionado(null);
   };
-  
 
   const removerProdutoCarrinho = (produto) => {
     setCarrinho((prev) => prev.filter((item) => item.id !== produto.id));
+
+    // Atualiza estoque quando um produto é removido do carrinho
+    setEstoque((prevEstoque) =>
+      prevEstoque.map((item) =>
+        item.id === produto.id
+          ? { ...item, quantidadeDisponivel: item.quantidadeDisponivel + produto.quantidade }
+          : item
+      )
+    );
   };
 
   const calcularTotal = () => {
@@ -108,6 +123,9 @@ const [estoque, setEstoque] = useState([
           </div>
         </div>
       </nav>
+
+      
+
              
       <div id="carouselExample" className="carousel slide" data-bs-ride="carousel">
         <style>
@@ -272,3 +290,19 @@ const [estoque, setEstoque] = useState([
     </>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
