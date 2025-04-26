@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
+//import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 import "../../assets/Kabur-2vKWK/fonts.css";
 
@@ -290,12 +290,6 @@ export default function HomePage() {
     </>
   );
 }
-
-
-
-
-
-
 
 
 
