@@ -17,6 +17,8 @@ export default function HomePage() {
         ];
   });
 
+  
+
   const [carrinho, setCarrinho] = useState(() => {
     const carrinhoSalvo = localStorage.getItem("carrinho");
     return carrinhoSalvo ? JSON.parse(carrinhoSalvo) : [];
@@ -52,7 +54,7 @@ export default function HomePage() {
       return;
     }
 
-    // Atualiza carrinho
+    // Atualiza carrinho.
     setCarrinho((prev) => {
       const itemExistente = prev.find((item) => item.id === produtoId);
       if (itemExistente) {
