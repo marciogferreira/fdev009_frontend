@@ -16,9 +16,28 @@
   .card-img-container {
     position: relative;
     width: 100%;
-    height: 300px;
+    height: 200px;
     background-color: #e71663;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-img-container .background-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .card-img-container .overlay-img {
+    position: absolute;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
   
   .background-img {
@@ -58,44 +77,62 @@
     object-fit: contain; /* ou "cover" se quiser preencher */
     z-index: 2;
   }
-  /* Estilos gerais de layout */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+  
 
-html, body {
-  height: 100%;
-}
-
-body {
-  display: flex;
-  flex-direction: column;
-}
-
-.container {
-  flex: 1;
-}
-
-/* Estilos do footer */
-footer {
-  background-color: #333;
-  color: white;
-  padding: 15px 0;
-  position: relative;
-  width: 100%;
-}
-
-footer p {
-  margin: 0;
-  font-size: 14px;
-}
-
-@media (max-width: 600px) {
-  footer {
-    padding: 20px;
+  .card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
   }
-}
-
-
+  
+  .card-img-container {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+  }
+  
+  .background-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .overlay-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+  }
+  
+  .card-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  html, body {
+    height: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .container {
+    flex: 1 0 auto; /* cresce para ocupar espaço disponível */
+  }
+  
+  footer {
+    flex-shrink: 0; /* footer não encolhe */
+    background-color: #333;
+    color: white;
+    padding: 15px 0;
+    width: 100%;
+    text-align: center;
+  }
+  

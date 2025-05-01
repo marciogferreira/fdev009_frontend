@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-//import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
 export default function Novidades() {
@@ -47,23 +47,26 @@ export default function Novidades() {
           {/* Card 2 - Nova Chegada (sem overlay) */}
           <div className="col-md-6">
             <div className="card mb-4">
+            <div className="position-relative product-img-container">
               <img src="https://dummyimage.com/600x400/e71663/e71663.jpg" className="card-img-top" alt="Nova Chegada 2" />
+              <img src="src/assets/produto2.png" alt="Overlay Produto" className="overlay-image" />
+              </div>
               <div className="card-body">
-                <h5 className="card-title">Nova Chegada 2 - O Futuro Está Aqui</h5>
-                <p className="card-text">Este é o produto do futuro! Conheça a nova tendência de tecnologia em nossa loja.</p>
+              <h5 className="card-title">Nova Chegada 2 - Novos modelos.</h5>
+              <p className="card-text">Este é o produto é ideal para academias! Conheça a nova tendência de roupas em nossa loja.</p>
               </div>
             </div>
           </div>
         </div>
       </div>
-{/* Footer */}
-<footer className="bg-dark text-white py-4 mt-5">
+
+      {/* Footer */}
+      <footer className="bg-dark text-white py-4 mt-5">
         <div className="container text-center">
           <p className="mb-1">© {new Date().getFullYear()} FDEV009. Todos os direitos reservados.</p>
-          <p className="mb-0">Desenvolvido por  A.Dev-Frontend</p>
+          <p className="mb-0">Desenvolvido por A.Dev-Frontend</p>
         </div>
       </footer>
-      
     </>
   );
 }

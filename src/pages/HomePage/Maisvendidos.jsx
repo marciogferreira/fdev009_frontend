@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-//import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
 export default function MaisVendidos() {
@@ -56,24 +56,35 @@ export default function MaisVendidos() {
           {/* Card 2 - Produto Mais Vendido (sem overlay) */}
           <div className="col-md-6">
             <div className="card mb-4">
-              <img src="https://dummyimage.com/600x400/e71663/e71663.jpg" className="card-img-top" alt="Produto 2" />
+            <div className="position-relative product-img-container">
+                <img
+                  src="https://dummyimage.com/600x400/e71663/e71663.jpg"
+                  className="card-img-top"
+                  alt="Produto 2"
+                />
+                <img
+                  src="src/assets/produto2.png"
+                  alt="Overlay Produto"
+                  className="overlay-image"
+                />
+              </div>
               <div className="card-body">
-                <h5 className="card-title">Produto 2 - Best Seller</h5>
-                <p className="card-text">Este produto está entre os mais vendidos, aproveite a oferta exclusiva.</p>
-                <Link to="/produto/2" className="btn btn-outline-dark">Ver Detalhes</Link>
+                <h5 className="card-title">Blusa Unissex - muito desejado em nossa loja.</h5>
+                <p className="card-text">Este é o produto está entre o mais vendido da nossa loja.</p>
+                <Link to="/produto/1" className="btn btn-outline-dark">Ver Detalhes</Link>
               </div>
             </div>
           </div>
         </div>
       </div>
-{/* Footer */}
-<footer className="bg-dark text-white py-4 mt-5">
+
+      {/* Footer */}
+      <footer className="bg-dark text-white py-4 mt-5">
         <div className="container text-center">
           <p className="mb-1">© {new Date().getFullYear()} FDEV009. Todos os direitos reservados.</p>
-          <p className="mb-0">Desenvolvido por  A.Dev-Frontend</p>
+          <p className="mb-0">Desenvolvido por A.Dev-Frontend</p>
         </div>
       </footer>
-      
     </>
   );
 }

@@ -1,42 +1,44 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-//import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 import "../../assets/Kabur-2vKWK/fonts.css";
 
 export default function HomePage() {
   const [estoque, setEstoque] = useState(() => {
     const estoqueSalvo = localStorage.getItem("estoque");
-    return estoqueSalvo
-      ? JSON.parse(estoqueSalvo)
-      : [
-          { id: 1, nome: "Hambúrguer Artesanal", preco: 6.5, img: "https://dummyimage.com/450x300/e71663/e71663.jpg", overlay: "src/assets/produto1.png", quantidadeDisponivel: 30 },
-          { id: 2, nome: "Produto 2", preco: 75, img: "https://dummyimage.com/450x300/e71663/e71663.jpg", overlay: "", quantidadeDisponivel: 0 },
-          { id: 3, nome: "Produto 3", preco: 100, img: "https://dummyimage.com/450x300/e71663/e71663.jpg", overlay: "", quantidadeDisponivel: 0 },
-          { id: 4, nome: "Produto 4", preco: 120, img: "https://dummyimage.com/450x300/e71663/e71663.jpg", overlay: "", quantidadeDisponivel: 0 },
-        ];
+    return estoqueSalvo ? JSON.parse(estoqueSalvo) : [     
+      { id: 1, nome: "Hambúrguer Artesanal", preco: 6.50, img: "https://dummyimage.com/450x300/e71663/e71663.jpg", overlay: "src/assets/produto1.png", quantidadeDisponivel: 30 },
+      { id: 2, nome: "Blusa Unissex", preco: 50, img: "https://dummyimage.com/450x300/e71663/e71663.jpg", overlay: "src/assets/produto2.png", quantidadeDisponivel: 1, tamanhos: ["P", "M", "G"] },
+      { id: 3, nome: "Fone de Ouvido", preco: 15, img: "https://dummyimage.com/450x300/e71663/e71663.jpg", overlay: "src/assets/produto3.png", quantidadeDisponivel: 0 },
+      { id: 4, nome: "Toalha", preco: 40, img: "https://dummyimage.com/450x300/e71663/e71663.jpg", overlay: "src/assets/produto4.png", quantidadeDisponivel: 0 }
+    ];
   });
 
-  
 
   const [carrinho, setCarrinho] = useState(() => {
     const carrinhoSalvo = localStorage.getItem("carrinho");
     return carrinhoSalvo ? JSON.parse(carrinhoSalvo) : [];
   });
 
+  const [tamanhoSelecionado, setTamanhoSelecionado] = useState({});
   const [produtoSelecionado, setProdutoSelecionado] = useState(null);
   const [quantidade, setQuantidade] = useState(1);
   const [modalCarrinho, setModalCarrinho] = useState(false);
 
   useEffect(() => {
-    localStorage.setItem("carrinho", JSON.stringify(carrinho));
-  }, [carrinho]);
-
-  useEffect(() => {
     localStorage.setItem("estoque", JSON.stringify(estoque));
   }, [estoque]);
 
+  useEffect(() => {
+    localStorage.setItem("carrinho", JSON.stringify(carrinho));
+  }, [carrinho]);
+
   const adicionarAoCarrinho = (produto) => {
+    if (produto.id === 2 && !tamanhoSelecionado[2]) {
+      alert("Selecione um tamanho antes de adicionar ao carrinho.");
+      return;
+    }
     setProdutoSelecionado(produto);
     setQuantidade(1);
   };
@@ -54,21 +56,29 @@ export default function HomePage() {
       return;
     }
 
-    // Atualiza carrinho.
+    const tamanho = produtoId === 2 ? tamanhoSelecionado[2] : null;
+
+    const novoItem = {
+      ...produtoSelecionado,
+      quantidade,
+      tamanho,
+    };
+
     setCarrinho((prev) => {
-      const itemExistente = prev.find((item) => item.id === produtoId);
+      const itemExistente = prev.find(
+        (item) => item.id === produtoId && item.tamanho === tamanho
+      );
       if (itemExistente) {
         return prev.map((item) =>
-          item.id === produtoId
+          item.id === produtoId && item.tamanho === tamanho
             ? { ...item, quantidade: item.quantidade + quantidade }
             : item
         );
       } else {
-        return [...prev, { ...produtoSelecionado, quantidade }];
+        return [...prev, novoItem];
       }
     });
 
-    // Atualiza estoque
     setEstoque((prev) =>
       prev.map((item) =>
         item.id === produtoId
@@ -78,14 +88,16 @@ export default function HomePage() {
     );
 
     setProdutoSelecionado(null);
+    if (produtoId === 2) {
+      setTamanhoSelecionado((prev) => ({ ...prev, 2: null }));
+    }
   };
 
   const removerProdutoCarrinho = (produto) => {
-    setCarrinho((prev) => prev.filter((item) => item.id !== produto.id));
+    setCarrinho((prev) => prev.filter((item) => !(item.id === produto.id && item.tamanho === produto.tamanho)));
 
-    // Atualiza estoque quando um produto é removido do carrinho
-    setEstoque((prevEstoque) =>
-      prevEstoque.map((item) =>
+    setEstoque((prev) =>
+      prev.map((item) =>
         item.id === produto.id
           ? { ...item, quantidadeDisponivel: item.quantidadeDisponivel + produto.quantidade }
           : item
@@ -100,6 +112,8 @@ export default function HomePage() {
   const quantidadeTotal = carrinho.reduce((total, item) => total + item.quantidade, 0);
 
   return (
+  
+
     <>
       <nav className="navbar navbar-expand-lg custom-navbar">
         <div className="container-fluid">
@@ -125,9 +139,6 @@ export default function HomePage() {
           </div>
         </div>
       </nav>
-
-      
-
              
       <div id="carouselExample" className="carousel slide" data-bs-ride="carousel">
         <style>
@@ -142,47 +153,46 @@ export default function HomePage() {
         </style>
         
         <div className="carousel-inner">
-  <div className="carousel-item active">
-    <div style={{ textAlign: "center", position: "relative" }}>
-      <img src="/banner1.png" className="d-block" alt="Banner PNG" style={{ width: "100%", height: "500px", objectFit: "contain", backgroundColor: "#8f4af7" }} />
-      <div className="carousel-Kabur-2vKWK" style={{
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        color: "white",
-        fontSize: "7vw",
-        fontWeight: "bold",
-        textAlign: "center",
-        width: "100%",
-        fontFamily: "'Kabur-2vKWK', sans-serif"
-      }}>
-        Kardoshstore.com.br
-      </div>
-    </div>
-  </div>
+          <div className="carousel-item active">
+            <div style={{ textAlign: "center", position: "relative" }}>
+              <img src="/banner1.png" className="d-block" alt="Banner PNG" style={{ width: "100%", height: "500px", objectFit: "contain", backgroundColor: "#8f4af7" }} />
+              <div className="carousel-Kabur-2vKWK" style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                color: "white",
+                fontSize: "7vw",
+                fontWeight: "bold",
+                textAlign: "center",
+                width: "100%",
+                fontFamily: "'Kabur-2vKWK', sans-serif"
+              }}>
+                Kardoshstore.com.br
+              </div>
+            </div>
+          </div>
 
-  <div className="carousel-item">
-    <div style={{ textAlign: "center", position: "relative" }}>
-      <img src="/banner2.png" className="d-block" alt="Banner PNG" style={{ width: "100%", height: "500px", objectFit: "contain", backgroundColor: "#8f4af7" }} />
-      <div className="carousel-Kabur-2vKWK" style={{
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        color: "white",
-        fontSize: "7vw",
-        fontWeight: "bold",
-        textAlign: "center",
-        width: "100%",
-        fontFamily: "'Kabur-2vKWK', sans-serif"
-      }}>
-        Kardoshstore.com.br
-      </div>
-    </div>
-  </div>
-</div>
-
+          <div className="carousel-item">
+            <div style={{ textAlign: "center", position: "relative" }}>
+              <img src="/banner2.png" className="d-block" alt="Banner PNG" style={{ width: "100%", height: "500px", objectFit: "contain", backgroundColor: "#8f4af7" }} />
+              <div className="carousel-Kabur-2vKWK" style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                color: "white",
+                fontSize: "7vw",
+                fontWeight: "bold",
+                textAlign: "center",
+                width: "100%",
+                fontFamily: "'Kabur-2vKWK', sans-serif"
+              }}>
+                Kardoshstore.com.br
+              </div>
+            </div>
+          </div>
+        </div>
 
         <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
           <span className="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -195,22 +205,42 @@ export default function HomePage() {
       <section className="py-5">
         <div className="container">
           <div className="row">
-          {estoque.map((produto) => (
-                <div key={produto.id} className="col-md-3">
+            {estoque.map((produto) => (
+              <div key={produto.id} className="col-md-3">
                 <div className="card">
-                <div className="card-img-container">
-  <img className="background-img" src={produto.img} alt="Fundo" />
-  {produto.overlay && (
-    <img className="overlay-img" src={produto.overlay} alt={produto.nome} />
+                  <div className="card-img-container">
+                    <img className="background-img" src={produto.img} alt="Fundo" />
+                    {produto.overlay && (
+                      <img className="overlay-img" src={produto.overlay} alt={produto.nome} />
+                    )}
+                  </div>
+                  <div className="card-body text-center">
+  <h5 className="fw-bolder">{produto.nome}</h5>
+  <p>R${produto.preco.toFixed(2)}</p>
+  <p>Estoque: {produto.quantidadeDisponivel}</p>
+
+  {produto.tamanhos && (
+    <div className="mb-2">
+      <small>Escolha o tamanho:</small>
+      <div className="d-flex justify-content-center flex-wrap">
+        {produto.tamanhos.map((tamanho) => (
+          <button
+            key={tamanho}
+            className={`btn btn-sm ${tamanhoSelecionado[produto.id] === tamanho ? "btn-primary" : "btn-outline-primary"} me-1 mb-1`}
+            onClick={() => setTamanhoSelecionado((prev) => ({ ...prev, [produto.id]: tamanho }))}
+          >
+            {tamanho}
+          </button>
+        ))}
+      </div>
+    </div>
   )}
+
+  <button className="btn btn-outline-dark" onClick={() => adicionarAoCarrinho(produto)}>
+    Adicionar ao Carrinho
+  </button>
 </div>
 
-                  <div className="card-body text-center">
-                    <h5 className="fw-bolder">{produto.nome}</h5>
-                    <p>R${produto.preco.toFixed(2)}</p>
-                    <p>Estoque: {produto.quantidadeDisponivel}</p>
-                    <button className="btn btn-outline-dark" onClick={() => adicionarAoCarrinho(produto)}>Adicionar ao Carrinho</button>
-                  </div>
                 </div>
               </div>
             ))}
@@ -218,6 +248,7 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Modal para adicionar produto */}
       {produtoSelecionado && (
         <div className="modal fade show" style={{ display: "block" }}>
           <div className="modal-dialog">
@@ -228,6 +259,23 @@ export default function HomePage() {
               </div>
               <div className="modal-body">
                 <p><strong>Preço unitário:</strong> R$ {produtoSelecionado.preco.toFixed(2)}</p>
+                {/* Se produto exige seleção de tamanho */}
+                {produtoSelecionado.id === 2 && produtoSelecionado.tamanhos && (
+                  <div className="mt-3">
+                    <label>Selecione o tamanho:</label>
+                    <div>
+                      {produtoSelecionado.tamanhos.map((tamanho) => (
+                        <button 
+                          key={tamanho}
+                          className={`btn ${tamanhoSelecionado[2] === tamanho ? "btn-primary" : "btn-outline-primary"} me-2`}
+                          onClick={() => setTamanhoSelecionado({ 2: tamanho })}
+                        >
+                          {tamanho}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
                 <div className="d-flex justify-content-between align-items-center mt-3">
                   <button className="btn bg-transparent border-0 p-0 fs-4" onClick={() => atualizarQuantidade(quantidade - 1)}>-</button>
                   <span>Quantidade: {quantidade}</span>
@@ -244,6 +292,7 @@ export default function HomePage() {
         </div>
       )}
 
+      {/* Modal do Carrinho */}
       {modalCarrinho && (
         <div className="modal fade show" style={{ display: "block" }}>
           <div className="modal-dialog">
@@ -260,7 +309,7 @@ export default function HomePage() {
                     {carrinho.map((item) => (
                       <li key={item.id} className="list-group-item d-flex justify-content-between align-items-center" style={{ border: "none" }}>
                         <div>
-                          {item.nome} - {item.quantidade}x R${item.preco.toFixed(2)}
+                          {item.nome} {item.tamanho && `(${item.tamanho})`} - {item.quantidade}x R${item.preco.toFixed(2)}
                         </div>
                         <button className="btn btn-sm" onClick={() => removerProdutoCarrinho(item)} style={{ background: "none", border: "none", padding: 0 }}>
                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" className="bi bi-trash" viewBox="0 0 16 16">
@@ -286,19 +335,12 @@ export default function HomePage() {
       <footer className="bg-dark text-white py-4 mt-5">
         <div className="container text-center">
           <p className="mb-1">© {new Date().getFullYear()} FDEV009. Todos os direitos reservados.</p>
-          <p className="mb-0">Desenvolvido por  A.Dev-Frontend</p>
+          <p className="mb-0">Desenvolvido por A.Dev-Frontend</p>
         </div>
       </footer>
     </>
   );
-}
-
-
-
-
-
-
-
+};
 
 
 

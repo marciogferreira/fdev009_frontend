@@ -1,13 +1,16 @@
-import { Link } from "react-router-dom";
-//import 'bootstrap/dist/css/bootstrap.min.css';
-import './app.css';
+import { Link } from "react-router-dom"; // <- adicione isso no topo
+import produto1 from '../../assets/produto1.png';
+import produto2 from '../../assets/produto2.png';
+import produto3 from '../../assets/produto3.png';
+import produto4 from '../../assets/produto4.png';
+
 
 export default function CategoriasPage() {
   const categorias = [
-    { nome: "Hambúrguer", img: "https://dummyimage.com/450x300/e71663/e71663.jpg", overlay: "src/assets/produto1.png" },
-    { nome: "Eletrônicos", img: "https://dummyimage.com/450x300/e71663/e71663.jpg" },
-    { nome: "Acessórios", img: "https://dummyimage.com/450x300/e71663/e71663.jpg" },
-    { nome: "Calçados", img: "https://dummyimage.com/450x300/e71663/e71663.jpg" }
+    { nome: "Hambúrgueres", img: "https://dummyimage.com/450x300/e71663/e71663.jpg", overlay: produto1 },
+    { nome: "Blusas Unissex", img: "https://dummyimage.com/450x300/e71663/e71663.jpg", overlay: produto2 },
+    { nome: "Fones de Ouvido", img: "https://dummyimage.com/450x300/e71663/e71663.jpg", overlay: produto3 },
+    { nome: "Toalhas", img: "https://dummyimage.com/450x300/e71663/e71663.jpg", overlay: produto4 }
   ];
 
   return (
@@ -57,7 +60,7 @@ export default function CategoriasPage() {
                 <div className="card-body">
                   <h5 className="card-title text-center">{categoria.nome}</h5>
                   <p className="card-text text-center">
-                    Confira os melhores {categoria.nome.toLowerCase()} da nossa loja.
+                    Confira  {categoria.nome.toLowerCase()} da nossa loja.
                   </p>
                 </div>
               </div>
@@ -65,14 +68,14 @@ export default function CategoriasPage() {
           ))}
         </div>
       </div>
-{/* Footer */}
-<footer className="bg-dark text-white py-4 mt-5">
+
+      {/* Footer */}
+      <footer className="bg-dark text-white py-4 mt-5">
         <div className="container text-center">
           <p className="mb-1">© {new Date().getFullYear()} FDEV009. Todos os direitos reservados.</p>
-          <p className="mb-0">Desenvolvido por  A.Dev-Frontend</p>
+          <p className="mb-0">Desenvolvido por A.Dev-Frontend</p>
         </div>
       </footer>
-      
     </>
   );
 }
