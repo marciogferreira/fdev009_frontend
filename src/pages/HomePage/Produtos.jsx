@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
+//import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 import produto1 from '../../assets/produto1.png';
 import produto2 from '../../assets/produto2.png';
