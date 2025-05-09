@@ -94,7 +94,7 @@ export default function HomePage() {
       </div>
 
       {/* RODAPÉ */}
-      <footer className="bg-dark text-white py-4 mt-5">
+      <footer className="footer-custom py-4 mt-5">
         <div className="container text-center">
           <p className="mb-1">© {new Date().getFullYear()} FDEV009. Todos os direitos reservados.</p>
           <p className="mb-0">Desenvolvido por A.Dev-Frontend</p>

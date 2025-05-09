@@ -10,11 +10,14 @@ export const AuthContext = createContext({
 function App() {
   const [isLogged, setIsLogged] = useState(false);
   return (
+    < >
     <AuthContext.Provider value={{ isLogged, setIsLogged }}>
       <BrowserRouter>  {/* Envolva as rotas com o BrowserRouter */}
         <MainRoutes />
       </BrowserRouter>
     </AuthContext.Provider>
+    <footer/>
+    </>
   );
 }
 
