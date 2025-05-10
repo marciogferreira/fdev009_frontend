@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-//import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
 export default function MaisVendidos() {
@@ -79,7 +79,7 @@ export default function MaisVendidos() {
       </div>
 
       {/* Footer */}
-      <footer className="footer-custom py-4 mt-5">
+      <footer className="bg-dark text-white py-4 mt-5">
         <div className="container text-center">
           <p className="mb-1">© {new Date().getFullYear()} FDEV009. Todos os direitos reservados.</p>
           <p className="mb-0">Desenvolvido por A.Dev-Frontend</p>
