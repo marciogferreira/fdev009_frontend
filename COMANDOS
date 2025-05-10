@@ -11,3 +11,18 @@ npm run dev
 npm install json-server
 
 npx json-server --watch db.json
+
+:: Conexão com banco da dados
+
+npm init -y
+
+
+
+npm install nodemon
+
+ "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+
+npm start

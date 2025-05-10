@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
+//import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
 export default function MaisVendidos() {
