@@ -151,13 +151,7 @@
     color: white;
     padding: 15px 0;
     width: 100%;
+    min-height: 150px;
     text-align: center;
   }
-  footer {
-  flex-shrink: 0; 
-  background-color: #181818;
-  color: white;
-  padding: 15px 0;
-  width: 100%;
-  text-align: center;
-}
+  
