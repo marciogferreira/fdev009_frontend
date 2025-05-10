@@ -1,20 +1,23 @@
 import { createContext, useState } from "react";
-import { BrowserRouter } from "react-router-dom";  // Importe o BrowserRouter
+import { BrowserRouter } from "react-router-dom";
 import MainRoutes from "./routes/MainRoutes";
 
 export const AuthContext = createContext({
-    isLogged: false,
-    setIsLogged: () => {}
+  isLogged: false,
+  setIsLogged: () => {}
 });
 
 function App() {
   const [isLogged, setIsLogged] = useState(false);
+
   return (
-    <AuthContext.Provider value={{ isLogged, setIsLogged }}>
-      <BrowserRouter>  {/* Envolva as rotas com o BrowserRouter */}
-        <MainRoutes />
-      </BrowserRouter>
-    </AuthContext.Provider>
+    <div className="app-wrapper">
+      <AuthContext.Provider value={{ isLogged, setIsLogged }}>
+        <BrowserRouter>
+          <MainRoutes />
+        </BrowserRouter>
+      </AuthContext.Provider>
+    </div>
   );
 }
 

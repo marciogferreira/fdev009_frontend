@@ -7,14 +7,43 @@ import "../../assets/Kabur-2vKWK/fonts.css";
 export default function HomePage() {
   const [estoque, setEstoque] = useState(() => {
     const estoqueSalvo = localStorage.getItem("estoque");
-    return estoqueSalvo ? JSON.parse(estoqueSalvo) : [     
-      { id: 1, nome: "Hambúrguer Artesanal", preco: 6.50, img: "https://dummyimage.com/450x300/e71663/e71663.jpg", overlay: "src/assets/produto1.png", quantidadeDisponivel: 30 },
-      { id: 2, nome: "Blusa Unissex", preco: 50, img: "https://dummyimage.com/450x300/e71663/e71663.jpg", overlay: "src/assets/produto2.png", quantidadeDisponivel: 1, tamanhos: ["P", "M", "G"] },
-      { id: 3, nome: "Fone de Ouvido", preco: 15, img: "https://dummyimage.com/450x300/e71663/e71663.jpg", overlay: "src/assets/produto3.png", quantidadeDisponivel: 0 },
-      { id: 4, nome: "Toalha", preco: 40, img: "https://dummyimage.com/450x300/e71663/e71663.jpg", overlay: "src/assets/produto4.png", quantidadeDisponivel: 0 }
-    ];
+    return estoqueSalvo
+      ? JSON.parse(estoqueSalvo)
+      : [
+          {
+            id: 1,
+            nome: "Hambúrguer Artesanal",
+            preco: 6.5,
+            img: "https://dummyimage.com/450x300/e71663/e71663.jpg",
+            overlay: "src/assets/produto1.png",
+            quantidadeDisponivel: 30,
+          },
+          {
+            id: 2,
+            nome: "Produto 2",
+            preco: 75,
+            img: "https://dummyimage.com/450x300/e71663/e71663.jpg",
+            overlay: "",
+            quantidadeDisponivel: 0,
+          },
+          {
+            id: 3,
+            nome: "Produto 3",
+            preco: 100,
+            img: "https://dummyimage.com/450x300/e71663/e71663.jpg",
+            overlay: "",
+            quantidadeDisponivel: 0,
+          },
+          {
+            id: 4,
+            nome: "Produto 4",
+            preco: 120,
+            img: "https://dummyimage.com/450x300/e71663/e71663.jpg",
+            overlay: "",
+            quantidadeDisponivel: 0,
+          },
+        ];
   });
-
 
   const [carrinho, setCarrinho] = useState(() => {
     const carrinhoSalvo = localStorage.getItem("carrinho");
@@ -82,7 +111,10 @@ export default function HomePage() {
     setEstoque((prev) =>
       prev.map((item) =>
         item.id === produtoId
-          ? { ...item, quantidadeDisponivel: item.quantidadeDisponivel - quantidade }
+          ? {
+              ...item,
+              quantidadeDisponivel: item.quantidadeDisponivel - quantidade,
+            }
           : item
       )
     );
@@ -94,53 +126,110 @@ export default function HomePage() {
   };
 
   const removerProdutoCarrinho = (produto) => {
-    setCarrinho((prev) => prev.filter((item) => !(item.id === produto.id && item.tamanho === produto.tamanho)));
+    setCarrinho((prev) =>
+      prev.filter(
+        (item) => !(item.id === produto.id && item.tamanho === produto.tamanho)
+      )
+    );
 
     setEstoque((prev) =>
       prev.map((item) =>
         item.id === produto.id
-          ? { ...item, quantidadeDisponivel: item.quantidadeDisponivel + produto.quantidade }
+          ? {
+              ...item,
+              quantidadeDisponivel:
+                item.quantidadeDisponivel + produto.quantidade,
+            }
           : item
       )
     );
   };
 
   const calcularTotal = () => {
-    return carrinho.reduce((total, item) => total + item.preco * item.quantidade, 0).toFixed(2);
+    return carrinho
+      .reduce((total, item) => total + item.preco * item.quantidade, 0)
+      .toFixed(2);
   };
 
-  const quantidadeTotal = carrinho.reduce((total, item) => total + item.quantidade, 0);
+  const quantidadeTotal = carrinho.reduce(
+    (total, item) => total + item.quantidade,
+    0
+  );
 
   return (
-  
-
     <>
       <nav className="navbar navbar-expand-lg custom-navbar">
         <div className="container-fluid">
-          <a className="navbar-brand" href="#">KardoshStore</a>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <a className="navbar-brand" href="#">
+            KardoshStore
+          </a>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse d-flex justify-content-between" id="navbarSupportedContent">
+          <div
+            className="collapse navbar-collapse d-flex justify-content-between"
+            id="navbarSupportedContent"
+          >
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item"><Link to="/" className="nav-link">Home</Link></li>
-              <li className="nav-item"><Link to="/produtos" className="nav-link">Produtos</Link></li>
-              <li className="nav-item"><Link to="/categorias" className="nav-link">Por Categorias</Link></li>
-              <li className="nav-item"><Link to="/mais-vendidos" className="nav-link">Mais Vendidos</Link></li>
-              <li className="nav-item"><Link to="/novidades" className="nav-link">Novidades</Link></li>
+              <li className="nav-item">
+                <Link to="/" className="nav-link">
+                  Home
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/produtos" className="nav-link">
+                  Produtos
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/categorias" className="nav-link">
+                  Por Categorias
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/mais-vendidos" className="nav-link">
+                  Mais Vendidos
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/novidades" className="nav-link">
+                  Novidades
+                </Link>
+              </li>
             </ul>
             <ul className="navbar-nav d-flex justify-content-end">
-              <li><Link to="/login" className="nav-link">Login</Link></li>
+              <li>
+                <Link to="/login" className="nav-link">
+                  Login
+                </Link>
+              </li>
             </ul>
-            <button className="btn position-relative" onClick={() => setModalCarrinho(true)}>
+            <button
+              className="btn position-relative"
+              onClick={() => setModalCarrinho(true)}
+            >
               🛒
-              <span className="badge bg-danger position-absolute top-0 start-100 translate-middle">{quantidadeTotal}</span>
+              <span className="badge bg-danger position-absolute top-0 start-100 translate-middle">
+                {quantidadeTotal}
+              </span>
             </button>
           </div>
         </div>
       </nav>
-             
-      <div id="carouselExample" className="carousel slide" data-bs-ride="carousel">
+
+      <div
+        id="carouselExample"
+        className="carousel slide"
+        data-bs-ride="carousel"
+      >
         <style>
           {`
             @font-face {
@@ -151,23 +240,36 @@ export default function HomePage() {
             }
           `}
         </style>
-        
+
         <div className="carousel-inner">
           <div className="carousel-item active">
             <div style={{ textAlign: "center", position: "relative" }}>
-              <img src="/banner1.png" className="d-block" alt="Banner PNG" style={{ width: "100%", height: "500px", objectFit: "contain", backgroundColor: "#8f4af7" }} />
-              <div className="carousel-Kabur-2vKWK" style={{
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                color: "white",
-                fontSize: "7vw",
-                fontWeight: "bold",
-                textAlign: "center",
-                width: "100%",
-                fontFamily: "'Kabur-2vKWK', sans-serif"
-              }}>
+              <img
+                src="/banner1.png"
+                className="d-block"
+                alt="Banner PNG"
+                style={{
+                  width: "100%",
+                  height: "500px",
+                  objectFit: "contain",
+                  backgroundColor: "#8f4af7",
+                }}
+              />
+              <div
+                className="carousel-Kabur-2vKWK"
+                style={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  color: "white",
+                  fontSize: "7vw",
+                  fontWeight: "bold",
+                  textAlign: "center",
+                  width: "100%",
+                  fontFamily: "'Kabur-2vKWK', sans-serif",
+                }}
+              >
                 Kardoshstore.com.br
               </div>
             </div>
@@ -175,30 +277,59 @@ export default function HomePage() {
 
           <div className="carousel-item">
             <div style={{ textAlign: "center", position: "relative" }}>
-              <img src="/banner2.png" className="d-block" alt="Banner PNG" style={{ width: "100%", height: "500px", objectFit: "contain", backgroundColor: "#8f4af7" }} />
-              <div className="carousel-Kabur-2vKWK" style={{
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                color: "white",
-                fontSize: "7vw",
-                fontWeight: "bold",
-                textAlign: "center",
-                width: "100%",
-                fontFamily: "'Kabur-2vKWK', sans-serif"
-              }}>
+              <img
+                src="/banner2.png"
+                className="d-block"
+                alt="Banner PNG"
+                style={{
+                  width: "100%",
+                  height: "500px",
+                  objectFit: "contain",
+                  backgroundColor: "#8f4af7",
+                }}
+              />
+              <div
+                className="carousel-Kabur-2vKWK"
+                style={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  color: "white",
+                  fontSize: "7vw",
+                  fontWeight: "bold",
+                  textAlign: "center",
+                  width: "100%",
+                  fontFamily: "'Kabur-2vKWK', sans-serif",
+                }}
+              >
                 Kardoshstore.com.br
               </div>
             </div>
           </div>
         </div>
 
-        <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+        <button
+          className="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExample"
+          data-bs-slide="prev"
+        >
+          <span
+            className="carousel-control-prev-icon"
+            aria-hidden="true"
+          ></span>
         </button>
-        <button className="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-          <span className="carousel-control-next-icon" aria-hidden="true"></span>
+        <button
+          className="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExample"
+          data-bs-slide="next"
+        >
+          <span
+            className="carousel-control-next-icon"
+            aria-hidden="true"
+          ></span>
         </button>
       </div>
 
@@ -209,38 +340,31 @@ export default function HomePage() {
               <div key={produto.id} className="col-md-3">
                 <div className="card">
                   <div className="card-img-container">
-                    <img className="background-img" src={produto.img} alt="Fundo" />
+                    <img
+                      className="background-img"
+                      src={produto.img}
+                      alt="Fundo"
+                    />
                     {produto.overlay && (
-                      <img className="overlay-img" src={produto.overlay} alt={produto.nome} />
+                      <img
+                        className="overlay-img"
+                        src={produto.overlay}
+                        alt={produto.nome}
+                      />
                     )}
                   </div>
+
                   <div className="card-body text-center">
-  <h5 className="fw-bolder">{produto.nome}</h5>
-  <p>R${produto.preco.toFixed(2)}</p>
-  <p>Estoque: {produto.quantidadeDisponivel}</p>
-
-  {produto.tamanhos && (
-    <div className="mb-2">
-      <small>Escolha o tamanho:</small>
-      <div className="d-flex justify-content-center flex-wrap">
-        {produto.tamanhos.map((tamanho) => (
-          <button
-            key={tamanho}
-            className={`btn btn-sm ${tamanhoSelecionado[produto.id] === tamanho ? "btn-primary" : "btn-outline-primary"} me-1 mb-1`}
-            onClick={() => setTamanhoSelecionado((prev) => ({ ...prev, [produto.id]: tamanho }))}
-          >
-            {tamanho}
-          </button>
-        ))}
-      </div>
-    </div>
-  )}
-
-  <button className="btn btn-outline-dark" onClick={() => adicionarAoCarrinho(produto)}>
-    Adicionar ao Carrinho
-  </button>
-</div>
-
+                    <h5 className="fw-bolder">{produto.nome}</h5>
+                    <p>R${produto.preco.toFixed(2)}</p>
+                    <p>Estoque: {produto.quantidadeDisponivel}</p>
+                    <button
+                      className="btn btn-outline-dark"
+                      onClick={() => adicionarAoCarrinho(produto)}
+                    >
+                      Adicionar ao Carrinho
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
@@ -253,39 +377,59 @@ export default function HomePage() {
         <div className="modal fade show" style={{ display: "block" }}>
           <div className="modal-dialog">
             <div className="modal-content">
-              <div className="modal-header" style={{ backgroundColor: "#8f4af7", color: "white", borderBottom: "none" }}>
+              <div
+                className="modal-header"
+                style={{
+                  backgroundColor: "#8f4af7",
+                  color: "white",
+                  borderBottom: "none",
+                }}
+              >
                 <h5 className="modal-title">{produtoSelecionado.nome}</h5>
-                <button type="button" className="btn-close" style={{ filter: "invert(1)" }} onClick={() => setProdutoSelecionado(null)}></button>
+                <button
+                  type="button"
+                  className="btn-close"
+                  style={{ filter: "invert(1)" }}
+                  onClick={() => setProdutoSelecionado(null)}
+                ></button>
               </div>
               <div className="modal-body">
-                <p><strong>Preço unitário:</strong> R$ {produtoSelecionado.preco.toFixed(2)}</p>
-                {/* Se produto exige seleção de tamanho */}
-                {produtoSelecionado.id === 2 && produtoSelecionado.tamanhos && (
-                  <div className="mt-3">
-                    <label>Selecione o tamanho:</label>
-                    <div>
-                      {produtoSelecionado.tamanhos.map((tamanho) => (
-                        <button 
-                          key={tamanho}
-                          className={`btn ${tamanhoSelecionado[2] === tamanho ? "btn-primary" : "btn-outline-primary"} me-2`}
-                          onClick={() => setTamanhoSelecionado({ 2: tamanho })}
-                        >
-                          {tamanho}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                )}
+                <p>
+                  <strong>Preço unitário:</strong> R${" "}
+                  {produtoSelecionado.preco.toFixed(2)}
+                </p>
                 <div className="d-flex justify-content-between align-items-center mt-3">
-                  <button className="btn bg-transparent border-0 p-0 fs-4" onClick={() => atualizarQuantidade(quantidade - 1)}>-</button>
+                  <button
+                    className="btn bg-transparent border-0 p-0 fs-4"
+                    onClick={() => atualizarQuantidade(quantidade - 1)}
+                  >
+                    -
+                  </button>
                   <span>Quantidade: {quantidade}</span>
-                  <button className="btn bg-transparent border-0 p-0 fs-4" onClick={() => atualizarQuantidade(quantidade + 1)}>+</button>
+                  <button
+                    className="btn bg-transparent border-0 p-0 fs-4"
+                    onClick={() => atualizarQuantidade(quantidade + 1)}
+                  >
+                    +
+                  </button>
                 </div>
-                <p className="mt-3">Total: R${(produtoSelecionado.preco * quantidade).toFixed(2)}</p>
+                <p className="mt-3">
+                  Total: R${(produtoSelecionado.preco * quantidade).toFixed(2)}
+                </p>
               </div>
               <div className="modal-footer">
-                <button className="btn btn-secondary" onClick={() => setProdutoSelecionado(null)}>Cancelar</button>
-                <button className="btn btn-primary" onClick={adicionarProdutoAoCarrinho}>Adicionar ao Carrinho</button>
+                <button
+                  className="btn btn-secondary"
+                  onClick={() => setProdutoSelecionado(null)}
+                >
+                  Cancelar
+                </button>
+                <button
+                  className="btn btn-primary"
+                  onClick={adicionarProdutoAoCarrinho}
+                >
+                  Adicionar ao Carrinho
+                </button>
               </div>
             </div>
           </div>
@@ -297,9 +441,20 @@ export default function HomePage() {
         <div className="modal fade show" style={{ display: "block" }}>
           <div className="modal-dialog">
             <div className="modal-content">
-              <div className="modal-header" style={{ backgroundColor: "#e71663", color: "white", borderBottom: "none" }}>
+              <div
+                className="modal-header"
+                style={{
+                  backgroundColor: "#e71663",
+                  color: "white",
+                  borderBottom: "none",
+                }}
+              >
                 <h5 className="modal-title">Carrinho</h5>
-                <button type="button" className="btn-close" onClick={() => setModalCarrinho(false)}></button>
+                <button
+                  type="button"
+                  className="btn-close"
+                  onClick={() => setModalCarrinho(false)}
+                ></button>
               </div>
               <div className="modal-body">
                 {carrinho.length === 0 ? (
@@ -307,14 +462,37 @@ export default function HomePage() {
                 ) : (
                   <ul className="list-group">
                     {carrinho.map((item) => (
-                      <li key={item.id} className="list-group-item d-flex justify-content-between align-items-center" style={{ border: "none" }}>
+                      <li
+                        key={item.id}
+                        className="list-group-item d-flex justify-content-between align-items-center"
+                        style={{ border: "none" }}
+                      >
                         <div>
-                          {item.nome} {item.tamanho && `(${item.tamanho})`} - {item.quantidade}x R${item.preco.toFixed(2)}
+                          {item.nome} - {item.quantidade}x R$
+                          {item.preco.toFixed(2)}
                         </div>
-                        <button className="btn btn-sm" onClick={() => removerProdutoCarrinho(item)} style={{ background: "none", border: "none", padding: 0 }}>
-                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" className="bi bi-trash" viewBox="0 0 16 16">
+                        <button
+                          className="btn btn-sm"
+                          onClick={() => removerProdutoCarrinho(item)}
+                          style={{
+                            background: "none",
+                            border: "none",
+                            padding: 0,
+                          }}
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            fill="black"
+                            className="bi bi-trash"
+                            viewBox="0 0 16 16"
+                          >
                             <path d="M5.5 5.5A.5.5 0 0 1 6 5h4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5H6a.5.5 0 0 1-.5-.5v-7z" />
-                            <path fillRule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1 0-2h3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1h3a1 1 0 0 1 1 1zm-2 1H3v9a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4z" />
+                            <path
+                              fillRule="evenodd"
+                              d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1 0-2h3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1h3a1 1 0 0 1 1 1zm-2 1H3v9a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4z"
+                            />
                           </svg>
                         </button>
                       </li>
@@ -332,15 +510,14 @@ export default function HomePage() {
       )}
 
       {/* Footer */}
-      <footer className="bg-dark text-white py-4 mt-5">
+      <footer className="footer-custom py-4 mt-5">
         <div className="container text-center">
-          <p className="mb-1">© {new Date().getFullYear()} FDEV009. Todos os direitos reservados.</p>
+          <p className="mb-1">
+            © {new Date().getFullYear()} FDEV009. Todos os direitos reservados.
+          </p>
           <p className="mb-0">Desenvolvido por A.Dev-Frontend</p>
         </div>
       </footer>
     </>
   );
-};
-
-
-
+}
