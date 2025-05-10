@@ -3,6 +3,33 @@ import { Link } from "react-router-dom";
 import "./app.css";
 
 export default function HomePage() {
+  const produtos = [
+    {
+      id: 1,
+      nome: "Hambúrguer Artesanal",
+      preco: 6.5,
+      imagem: produto1,
+    },
+    {
+      id: 2,
+      nome: "Blusa Unissex",
+      preco: 50.0,
+      imagem: produto2,
+    },
+    {
+      id: 3,
+      nome: "Fone de Ouvido",
+      preco: 15.0,
+      imagem: produto3,
+    },
+    {
+      id: 4,
+      nome: "Toalha",
+      preco: 40.0,
+      imagem: produto4,
+    },
+  ];
+
   return (
     <>
       <nav className="navbar navbar-expand-lg custom-navbar">
@@ -120,7 +147,8 @@ export default function HomePage() {
         </div>
       </div>
 
-      <footer className="bg-dark text-white py-4 mt-5">
+      {/* RODAPÉ */}
+      <footer className="footer-custom py-4 mt-5">
         <div className="container text-center">
           <p className="mb-1">
             © {new Date().getFullYear()} FDEV009. Todos os direitos reservados.

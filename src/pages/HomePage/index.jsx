@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-//import "bootstrap/dist/css/bootstrap.min.css";
+//import 'bootstrap/dist/css/bootstrap.min.css';
 import "./app.css";
 import "../../assets/Kabur-2vKWK/fonts.css";
 
@@ -50,19 +50,24 @@ export default function HomePage() {
     return carrinhoSalvo ? JSON.parse(carrinhoSalvo) : [];
   });
 
+  const [tamanhoSelecionado, setTamanhoSelecionado] = useState({});
   const [produtoSelecionado, setProdutoSelecionado] = useState(null);
   const [quantidade, setQuantidade] = useState(1);
   const [modalCarrinho, setModalCarrinho] = useState(false);
 
   useEffect(() => {
-    localStorage.setItem("carrinho", JSON.stringify(carrinho));
-  }, [carrinho]);
-
-  useEffect(() => {
     localStorage.setItem("estoque", JSON.stringify(estoque));
   }, [estoque]);
 
+  useEffect(() => {
+    localStorage.setItem("carrinho", JSON.stringify(carrinho));
+  }, [carrinho]);
+
   const adicionarAoCarrinho = (produto) => {
+    if (produto.id === 2 && !tamanhoSelecionado[2]) {
+      alert("Selecione um tamanho antes de adicionar ao carrinho.");
+      return;
+    }
     setProdutoSelecionado(produto);
     setQuantidade(1);
   };
@@ -80,21 +85,29 @@ export default function HomePage() {
       return;
     }
 
-    // Atualiza carrinho
+    const tamanho = produtoId === 2 ? tamanhoSelecionado[2] : null;
+
+    const novoItem = {
+      ...produtoSelecionado,
+      quantidade,
+      tamanho,
+    };
+
     setCarrinho((prev) => {
-      const itemExistente = prev.find((item) => item.id === produtoId);
+      const itemExistente = prev.find(
+        (item) => item.id === produtoId && item.tamanho === tamanho
+      );
       if (itemExistente) {
         return prev.map((item) =>
-          item.id === produtoId
+          item.id === produtoId && item.tamanho === tamanho
             ? { ...item, quantidade: item.quantidade + quantidade }
             : item
         );
       } else {
-        return [...prev, { ...produtoSelecionado, quantidade }];
+        return [...prev, novoItem];
       }
     });
 
-    // Atualiza estoque
     setEstoque((prev) =>
       prev.map((item) =>
         item.id === produtoId
@@ -107,14 +120,20 @@ export default function HomePage() {
     );
 
     setProdutoSelecionado(null);
+    if (produtoId === 2) {
+      setTamanhoSelecionado((prev) => ({ ...prev, 2: null }));
+    }
   };
 
   const removerProdutoCarrinho = (produto) => {
-    setCarrinho((prev) => prev.filter((item) => item.id !== produto.id));
+    setCarrinho((prev) =>
+      prev.filter(
+        (item) => !(item.id === produto.id && item.tamanho === produto.tamanho)
+      )
+    );
 
-    // Atualiza estoque quando um produto é removido do carrinho
-    setEstoque((prevEstoque) =>
-      prevEstoque.map((item) =>
+    setEstoque((prev) =>
+      prev.map((item) =>
         item.id === produto.id
           ? {
               ...item,
@@ -353,6 +372,7 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Modal para adicionar produto */}
       {produtoSelecionado && (
         <div className="modal fade show" style={{ display: "block" }}>
           <div className="modal-dialog">
@@ -416,6 +436,7 @@ export default function HomePage() {
         </div>
       )}
 
+      {/* Modal do Carrinho */}
       {modalCarrinho && (
         <div className="modal fade show" style={{ display: "block" }}>
           <div className="modal-dialog">
@@ -489,7 +510,7 @@ export default function HomePage() {
       )}
 
       {/* Footer */}
-      <footer className="bg-dark text-white py-4 mt-5">
+      <footer className="footer-custom py-4 mt-5">
         <div className="container text-center">
           <p className="mb-1">
             © {new Date().getFullYear()} FDEV009. Todos os direitos reservados.

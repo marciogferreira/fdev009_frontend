@@ -11,14 +11,51 @@
   .custom-navbar .navbar-brand:hover {
     color: #e0e0e0 !important; /* tom mais claro no hover */
   }
+
+  .custom-navbar .nav-link {
+    position: relative;
+    padding: 8px 12px;
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 5px;
+  }
+  
+  .custom-navbar .nav-link:hover,
+  .custom-navbar .nav-link:focus,
+  .custom-navbar .nav-link.active {
+    background-color: transparent !important; /* sem fundo */
+    color: #ffff !important; /* Para contraste, texto preto */
+  }
+  .custom-navbar .nav-link:hover {
+    box-shadow: 0 0 0 2px #ffff;
+  }
+  
   
   
   .card-img-container {
     position: relative;
     width: 100%;
-    height: 300px;
+    height: 200px;
     background-color: #e71663;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-img-container .background-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .card-img-container .overlay-img {
+    position: absolute;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
   
   .background-img {
@@ -57,5 +94,64 @@
     height: 100%;
     object-fit: contain; /* ou "cover" se quiser preencher */
     z-index: 2;
+  }
+  
+
+  .card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .card-img-container {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+  }
+  
+  .background-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .overlay-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+  }
+  
+  .card-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  html, body {
+    height: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .container {
+    flex: 1 0 auto; /* cresce para ocupar espaço disponível */
+  }
+  
+  .footer-custom {
+    flex-shrink: 0; /* footer não encolhe */
+    background-color: #181818;
+    color: white;
+    padding: 15px 0;
+    width: 100%;
+    min-height: 150px;
+    text-align: center;
   }
   
