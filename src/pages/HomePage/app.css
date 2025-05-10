@@ -12,6 +12,23 @@
     color: #e0e0e0 !important; /* tom mais claro no hover */
   }
   
+  .custom-navbar .nav-link {
+    position: relative;
+    padding: 8px 12px;
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 5px;
+  }
+  
+  .custom-navbar .nav-link:hover,
+  .custom-navbar .nav-link:focus,
+  .custom-navbar .nav-link.active {
+    background-color: transparent !important; /* sem fundo */
+    color: #ffff !important; /* Para contraste, texto preto */
+  }
+  .custom-navbar .nav-link:hover {
+    box-shadow: 0 0 0 2px #ffff;
+  }
+  
   
   .card-img-container {
     position: relative;
