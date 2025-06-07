@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 import "../../assets/Kabur-2vKWK/fonts.css";
-
+import Api from '../../config/Api'
 export default function HomePage() {
   const [estoque, setEstoque] = useState(() => {
     const estoqueSalvo = localStorage.getItem("estoque");
@@ -25,6 +25,17 @@ export default function HomePage() {
   const [produtoSelecionado, setProdutoSelecionado] = useState(null);
   const [quantidade, setQuantidade] = useState(1);
   const [modalCarrinho, setModalCarrinho] = useState(false);
+
+  const [produtos, setProdutos] = useState([]);
+
+  async function getProdutos() {
+    const response = await Api.get('public/produtos');
+    setProdutos(response.data);
+  }
+
+  useEffect(() => {
+    getProdutos()
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("estoque", JSON.stringify(estoque));
@@ -115,6 +126,7 @@ export default function HomePage() {
   
 
     <>
+    
       <nav className="navbar navbar-expand-lg custom-navbar">
         <div className="container-fluid">
           <a className="navbar-brand" href="#">KardoshStore</a>
@@ -205,18 +217,19 @@ export default function HomePage() {
       <section className="py-5">
         <div className="container">
           <div className="row">
-            {estoque.map((produto) => (
+            
+            {produtos.map((produto) => (
               <div key={produto.id} className="col-md-3">
                 <div className="card">
                   <div className="card-img-container">
-                    <img className="background-img" src={produto.img} alt="Fundo" />
+                    <img className="background-img" src={`src/assets/${produto.img}`} alt="Fundo" />
                     {produto.overlay && (
                       <img className="overlay-img" src={produto.overlay} alt={produto.nome} />
                     )}
                   </div>
                   <div className="card-body text-center">
   <h5 className="fw-bolder">{produto.nome}</h5>
-  <p>R${produto.preco.toFixed(2)}</p>
+  <p>R$ {Number(produto.preco).toFixed(2)}</p>
   <p>Estoque: {produto.quantidadeDisponivel}</p>
 
   {produto.tamanhos && (
