@@ -236,7 +236,8 @@ export default function HomePage() {
     <div className="mb-2">
       <small>Escolha o tamanho:</small>
       <div className="d-flex justify-content-center flex-wrap">
-        {produto.tamanhos.map((tamanho) => (
+        {/* {produto.tamanhos.map((tamanho) => ( */}
+        {['P', 'M', 'G', 'GG'].map((tamanho) => ( 
           <button
             key={tamanho}
             className={`btn btn-sm ${tamanhoSelecionado[produto.id] === tamanho ? "btn-primary" : "btn-outline-primary"} me-1 mb-1`}
@@ -271,7 +272,7 @@ export default function HomePage() {
                 <button type="button" className="btn-close" style={{ filter: "invert(1)" }} onClick={() => setProdutoSelecionado(null)}></button>
               </div>
               <div className="modal-body">
-                <p><strong>Preço unitário:</strong> R$ {produtoSelecionado.preco.toFixed(2)}</p>
+                <p><strong>Preço unitário:</strong> R$ {Number(produtoSelecionado.preco).toFixed(2)}</p>
                 {/* Se produto exige seleção de tamanho */}
                 {produtoSelecionado.id === 2 && produtoSelecionado.tamanhos && (
                   <div className="mt-3">
@@ -322,7 +323,7 @@ export default function HomePage() {
                     {carrinho.map((item) => (
                       <li key={item.id} className="list-group-item d-flex justify-content-between align-items-center" style={{ border: "none" }}>
                         <div>
-                          {item.nome} {item.tamanho && `(${item.tamanho})`} - {item.quantidade}x R${item.preco.toFixed(2)}
+                          {item.nome} {item.tamanho && `(${item.tamanho})`} - {item.quantidade}x R${Number(item.preco).toFixed(2)}
                         </div>
                         <button className="btn btn-sm" onClick={() => removerProdutoCarrinho(item)} style={{ background: "none", border: "none", padding: 0 }}>
                           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" className="bi bi-trash" viewBox="0 0 16 16">
