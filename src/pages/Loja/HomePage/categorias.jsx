@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom"; // <- adicione isso no topo
-import produto1 from '../../assets/produto1.png';
-import produto2 from '../../assets/produto2.png';
-import produto3 from '../../assets/produto3.png';
-import produto4 from '../../assets/produto4.png';
-
+import produto1 from '../../../assets/produto1.png';
+import produto2 from '../../../assets/produto2.png';
+import produto3 from '../../../assets/produto3.png';
+import produto4 from '../../../assets/produto4.png';
 
 export default function CategoriasPage() {
+
   const categorias = [
     { nome: "Hambúrgueres", img: "https://dummyimage.com/450x300/e71663/e71663.jpg", overlay: produto1 },
     { nome: "Blusas Unissex", img: "https://dummyimage.com/450x300/e71663/e71663.jpg", overlay: produto2 },
@@ -22,6 +22,7 @@ export default function CategoriasPage() {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse d-flex justify-content-between" id="navbarSupportedContent">
+            
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item"><Link to="/" className="nav-link">Home</Link></li>
               <li className="nav-item"><Link to="/produtos" className="nav-link">Produtos</Link></li>
@@ -29,6 +30,7 @@ export default function CategoriasPage() {
               <li className="nav-item"><Link to="/mais-vendidos" className="nav-link">Mais Vendidos</Link></li>
               <li className="nav-item"><Link to="/novidades" className="nav-link">Novidades</Link></li>
             </ul>
+
             <ul className="navbar-nav d-flex justify-content-end">
               <li><Link to="/login" className="nav-link">Login</Link></li>
             </ul>

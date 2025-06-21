@@ -1,4 +1,4 @@
-import LayoutDefault from "../../layouts/LayoutDefault";
+import LayoutDefault from "../../../layouts/LayoutDefault";
 function Pedidos() {
   return (
     <LayoutDefault>

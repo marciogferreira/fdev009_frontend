@@ -1,25 +1,23 @@
 import { useNavigate, useParams } from "react-router-dom";
-import LayoutDefault from "../../layouts/LayoutDefault";
+import LayoutDefault from "../../../layouts/LayoutDefault";
 import axios from "axios";
 import { Formik, Field, ErrorMessage } from "formik";
 import * as Yup from 'yup'
 import swal from 'sweetalert';
 import { useState, useEffect } from "react";
 
-function UsuariosForm() {
+function CategoriasForm() {
 
     const navigate = useNavigate();
     const params = useParams();
 
     const [data, setData] = useState({
-        nome: '',
-        email: '',
-        senha: '',
+        categoria: '',
     })
 
     async function getData() {
         if(params.id) {
-            const response = await axios.get('http://localhost:3000/usuarios/'+params.id)
+            const response = await axios.get('http://localhost:3000/categorias/'+params.id)
             setData(response.data)
         }
     }
@@ -28,26 +26,24 @@ function UsuariosForm() {
         // validado
         // ENVIA OS DADOS PARA O JSON SERVER
         if(params.id) {
-            await axios.put('http://localhost:3000/usuarios/'+params.id, values)
+            await axios.put('http://localhost:3000/categorias/'+params.id, values)
         } else {
-            await axios.post('http://localhost:3000/usuarios', values)
+            await axios.post('http://localhost:3000/categorias', values)
         }
         // LIMPA OS DADOS DO FORMULARIO
         forms.resetForm();
         if(params.id) {
-            swal("Sucesso!", "Usuário Atualizado com Sucesso.", "success");
+            swal("Sucesso!", "Categoria Atualizada com Sucesso.", "success");
         } else {
-            swal("Sucesso!", "Usuário Salvo com Sucesso.", "success");
+            swal("Sucesso!", "Categoria Salva com Sucesso.", "success");
         }
         
-        navigate('/usuarios');
+        navigate('/categorias');
     }
 
     // CONFIGURA OS CAMPOS PARA VALIDACAO
     const validationSchema = Yup.object({
-        nome: Yup.string().required('Campo Obrigatório'),
-        email: Yup.string().required('Campo Obrigatório').email('E-mail inválido.'),
-        senha: Yup.string().required('Campo Obrigatório').min(6, 'Senha deve conter pelo menos 6 digitos.')
+        categoria: Yup.string().required('Campo Obrigatório'),
     });
 
     useEffect(() => {
@@ -58,7 +54,7 @@ function UsuariosForm() {
     return (
         <>
             <LayoutDefault>
-                <h5>Formulário de Usuários</h5>
+                <h5>Formulário de Categorias</h5>
                 <div className="d-flex justify-content-end">
                    
                 </div>
@@ -71,27 +67,14 @@ function UsuariosForm() {
                     {({ handleSubmit }) => (
                         <form>
                             <div>
-                                <label htmlFor="nome">Nome:</label>
-                                <Field type="text" id="nome" name="nome" className="form-control" required />
+                                <label htmlFor="categoria">Categoria:</label>
+                                <Field type="text" id="categoria" name="categoria" className="form-control" required />
                                 
                             </div>
                             <span className="error">
-                                <ErrorMessage name="nome" />
+                                <ErrorMessage name="categoria" />
                             </span>
-                            <div>
-                                <label htmlFor="email">Email:</label>
-                                <Field type="email" id="email" name="email" className="form-control"  required />
-                            </div>
-                            <span className="error">
-                                <ErrorMessage name="email" />
-                            </span>
-                            <div>
-                                <label htmlFor="senha">Senha:</label>
-                                <Field type="password" id="senha" name="senha" className="form-control"  required />
-                            </div>
-                            <span className="error">
-                                <ErrorMessage name="senha" />
-                            </span>
+                            
                             <div className="mt-3 d-flex justify-content-end">
                                 <button type="button" onClick={() => handleSubmit()} className="btn btn-success btn-sm">
                                     Salvar
@@ -111,4 +94,4 @@ function UsuariosForm() {
     )
 }
 
-export default UsuariosForm;
+export default CategoriasForm;

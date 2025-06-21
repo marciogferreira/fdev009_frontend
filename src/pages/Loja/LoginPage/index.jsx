@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { AuthContext } from '../../App';
+import { AuthContext } from '../../../App';
 import { useNavigate } from 'react-router-dom';
 
 // Definindo o esquema de validação com Yup

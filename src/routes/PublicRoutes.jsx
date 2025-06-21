@@ -1,13 +1,13 @@
 import { Routes, Route } from "react-router-dom";
-import HomePage from "../pages/HomePage";  
-import Produtos from "../pages/HomePage/Produtos";  
-import Categorias from "../pages/HomePage/Categorias";  
-import MaisVendidos from "../pages/HomePage/MaisVendidos";  
-import Novidades from "../pages/HomePage/Novidades";  {/* Adicionada a importação */}
-import LoginPage from "../pages/LoginPage";
-import Carrinho from "../pages/Carrinho";
-import Contatos from "../pages/Contatos";
-import PagamentoPage from "../pages/PagamentoPage";
+import HomePage from "../pages/Loja/HomePage";  
+import Produtos from "../pages/Loja/HomePage/Produtos";  
+import MaisVendidos from "../pages/Loja/HomePage/MaisVendidos";  
+import Novidades from "../pages/Loja/HomePage/Novidades";  {/* Adicionada a importação */}
+import LoginPage from "../pages/Loja/LoginPage";
+import Carrinho from "../pages/Loja/Carrinho";
+import Contatos from "../pages/Loja/Contatos";
+import PagamentoPage from "../pages/Loja/PagamentoPage";
+import CategoriasPage from "../pages/Loja/HomePage/Categorias";
 
 export default function PublicRoutes() {
   return (
@@ -15,7 +15,7 @@ export default function PublicRoutes() {
       <Route path="/" element={<HomePage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/produtos" element={<Produtos />} />
-      <Route path="/categorias" element={<Categorias />} />
+      <Route path="/categorias" element={<CategoriasPage />} />
       <Route path="/mais-vendidos" element={<MaisVendidos />} />
       <Route path="/novidades" element={<Novidades />} />  {/* Adicionada a rota */}
       <Route path="/carrinho" element={<Carrinho />} />

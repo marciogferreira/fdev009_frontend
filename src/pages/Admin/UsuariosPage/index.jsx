@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import LayoutDefault from "../../layouts/LayoutDefault";
+import LayoutDefault from "../../../layouts/LayoutDefault";
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";

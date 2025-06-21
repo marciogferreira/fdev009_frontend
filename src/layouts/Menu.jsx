@@ -45,32 +45,32 @@ export default function Menu() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link to="/" className="nav-link active">
+                <Link to="/admin" className="nav-link active">
                   Painel
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/produtos" className="nav-link active">
+                <Link to="/adminprodutos" className="nav-link active">
                   Produtos
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/categorias" className="nav-link active">
+                <Link to="/admincategorias" className="nav-link active">
                   Categorias
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/Financeiro" className="nav-link active">
+                <Link to="/admin/financeiro" className="nav-link active">
                   Financeiro
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/pedidos" className="nav-link active">
+                <Link to="/admin/pedidos" className="nav-link active">
                   Pedidos
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/usuarios" className="nav-link active">
+                <Link to="/admin/usuarios" className="nav-link active">
                   Usuários
                 </Link>
               </li>

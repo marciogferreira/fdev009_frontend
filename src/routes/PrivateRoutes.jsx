@@ -1,30 +1,29 @@
 import { Routes, Route } from "react-router-dom";
-import PainelPage from "../pages/PainelPage";
-import Produtos from "../pages/Private/Produtos";
-import Categorias from "../pages/Private/Categorias";
-import CategoriasForm from "../pages/CategoriasPage/CategoriasForm";
-import ProdutosPages from "../pages/ProdutosPage";
-import Financeiro from "../pages/Private/Financeiro";
-import Pedidos from "../pages/Private/Pedidos";
-import UsuariosPage from "../pages/UsuariosPage";
-import UsuariosForm from "../pages/UsuariosPage/UsuariosForm";
-import PedidosForm from "../pages/Private/Pedidos/PedidosForm";
+import PainelPage from "../pages/Admin/PainelPage";
+import Categorias from "../pages/Admin/Categorias";
+import CategoriasForm from "../pages/Admin/CategoriasPage/CategoriasForm";
+import ProdutosPages from "../pages/Admin/ProdutosPage";
+import Financeiro from "../pages/Admin/Financeiro";
+import Pedidos from "../pages/Admin/Pedidos";
+import UsuariosPage from "../pages/Admin/UsuariosPage";
+import UsuariosForm from "../pages/Admin/UsuariosPage/UsuariosForm";
+import PedidosForm from "../pages/Admin/Pedidos/PedidosForm";
 
 export default function PrivateRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<PainelPage />} />
-      <Route path="/categorias" element={<Categorias />} />
-      <Route path="/categorias/novo" element={<CategoriasForm />} />
-      <Route path="/categorias/editar/:id" element={<CategoriasForm />} />
-      <Route path="/produtos" element={<ProdutosPages />} />
-      <Route path="/financeiro" element={<Financeiro />} />
-      <Route path="/pedidos" element={<Pedidos />} />
-      <Route path="/usuarios" element={<UsuariosPage />} />
-      <Route path="/usuarios/novo" element={<UsuariosForm />} />
-      <Route path="/usuarios/editar/:id" element={<UsuariosForm />} />
-      <Route path="/pedidos/novo" element={<PedidosForm />} />
-      <Route path="/pedidos/editar/:id" element={<PedidosForm />} />
+      <Route path="/admin/" element={<PainelPage />} />
+      <Route path="/admin/categorias" element={<Categorias />} />
+      <Route path="/admin/categorias/novo" element={<CategoriasForm />} />
+      <Route path="/admin/categorias/editar/:id" element={<CategoriasForm />} />
+      <Route path="/admin/produtos" element={<ProdutosPages />} />
+      <Route path="/admin/financeiro" element={<Financeiro />} />
+      <Route path="/admin/pedidos" element={<Pedidos />} />
+      <Route path="/admin/usuarios" element={<UsuariosPage />} />
+      <Route path="/admin/usuarios/novo" element={<UsuariosForm />} />
+      <Route path="/admin/usuarios/editar/:id" element={<UsuariosForm />} />
+      <Route path="/admin/pedidos/novo" element={<PedidosForm />} />
+      <Route path="/admin/pedidos/editar/:id" element={<PedidosForm />} />
       <Route path="*" element={<h1>Not Found</h1>} />
     </Routes>
   );

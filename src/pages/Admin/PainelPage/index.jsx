@@ -1,4 +1,4 @@
-import LayoutDefault from "../../layouts/LayoutDefault";
+import LayoutDefault from "../../../layouts/LayoutDefault";
 import { Chart } from "react-google-charts";
 
 export default function PainelPage() {
