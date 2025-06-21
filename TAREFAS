@@ -1,0 +1,25 @@
+EMMILLE:
+
+Deve exibir os dados de Categorias na Tela de Categorias
+Consultando da API.
+EndPoint: https://fdev009-backend.onrender.com/public/categorias
+
+-------------------------------------------------------------------------
+
+Alber:
+Deve Exibir os produtos na tela de Produtos
+EndPoint: EndPoint: https://fdev009-backend.onrender.com/public/produtos
+
+-------------------------------------------------------------------------
+
+Paulo:
+Deve Exibir os produtos novos em Novidades, 
+Deve tb criar um endPoint novo no Backend conforme abaixo
+EndPoint: EndPoint: https://fdev009-backend.onrender.com/public/novidades
+
+-------------------------------------------------------------------------
+
+Geovanne:
+Deve Exibir os produtos novos em Mais Vendidos, 
+Deve tb criar um endPoint novo no Backend conforme abaixo
+EndPoint: EndPoint: https://fdev009-backend.onrender.com/public/mais-vendidos
