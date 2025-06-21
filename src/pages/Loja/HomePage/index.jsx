@@ -6,6 +6,7 @@ import LayoutPublic from "../../../layouts/LayoutPublic";
 import { CarrinhoContext } from "../../../contexts/CarrinhoContext";
 
 export default function HomePage() {
+  
   const { carrinho, setCarrinho } = useContext(CarrinhoContext);
   const [tamanhoSelecionado, setTamanhoSelecionado] = useState({});
   const [produtoSelecionado, setProdutoSelecionado] = useState(null);
