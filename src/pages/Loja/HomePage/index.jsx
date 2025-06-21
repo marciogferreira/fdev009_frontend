@@ -1,31 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "../../../assets/Kabur-2vKWK/fonts.css";
 import Api from '../../../config/Api'
 import LayoutPublic from "../../../layouts/LayoutPublic";
+import { CarrinhoContext } from "../../../contexts/CarrinhoContext";
 
 export default function HomePage() {
-  const [estoque, setEstoque] = useState(() => {
-    const estoqueSalvo = localStorage.getItem("estoque");
-    return estoqueSalvo ? JSON.parse(estoqueSalvo) : [     
-      { id: 1, nome: "Hambúrguer Artesanal", preco: 6.50, img: "https://dummyimage.com/450x300/e71663/e71663.jpg", overlay: "src/assets/produto1.png", quantidadeDisponivel: 30 },
-      { id: 2, nome: "Blusa Unissex", preco: 50, img: "https://dummyimage.com/450x300/e71663/e71663.jpg", overlay: "src/assets/produto2.png", quantidadeDisponivel: 1, tamanhos: ["P", "M", "G"] },
-      { id: 3, nome: "Fone de Ouvido", preco: 15, img: "https://dummyimage.com/450x300/e71663/e71663.jpg", overlay: "src/assets/produto3.png", quantidadeDisponivel: 0 },
-      { id: 4, nome: "Toalha", preco: 40, img: "https://dummyimage.com/450x300/e71663/e71663.jpg", overlay: "src/assets/produto4.png", quantidadeDisponivel: 0 }
-    ];
-  });
-
-
-  const [carrinho, setCarrinho] = useState(() => {
-    const carrinhoSalvo = localStorage.getItem("carrinho");
-    return carrinhoSalvo ? JSON.parse(carrinhoSalvo) : [];
-  });
-
+  const { carrinho, setCarrinho } = useContext(CarrinhoContext);
   const [tamanhoSelecionado, setTamanhoSelecionado] = useState({});
   const [produtoSelecionado, setProdutoSelecionado] = useState(null);
   const [quantidade, setQuantidade] = useState(1);
   const [modalCarrinho, setModalCarrinho] = useState(false);
-
   const [produtos, setProdutos] = useState([]);
 
   async function getProdutos() {
@@ -37,94 +22,8 @@ export default function HomePage() {
     getProdutos()
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem("estoque", JSON.stringify(estoque));
-  }, [estoque]);
-
-  useEffect(() => {
-    localStorage.setItem("carrinho", JSON.stringify(carrinho));
-  }, [carrinho]);
-
-  const adicionarAoCarrinho = (produto) => {
-    if (produto.id === 2 && !tamanhoSelecionado[2]) {
-      alert("Selecione um tamanho antes de adicionar ao carrinho.");
-      return;
-    }
-    setProdutoSelecionado(produto);
-    setQuantidade(1);
-  };
-
-  const atualizarQuantidade = (valor) => {
-    if (valor > 0) setQuantidade(valor);
-  };
-
-  const adicionarProdutoAoCarrinho = () => {
-    const produtoId = produtoSelecionado.id;
-    const estoqueAtual = estoque.find((p) => p.id === produtoId);
-
-    if (quantidade > estoqueAtual.quantidadeDisponivel) {
-      alert("Quantidade solicitada excede o estoque disponível!");
-      return;
-    }
-
-    const tamanho = produtoId === 2 ? tamanhoSelecionado[2] : null;
-
-    const novoItem = {
-      ...produtoSelecionado,
-      quantidade,
-      tamanho,
-    };
-
-    setCarrinho((prev) => {
-      const itemExistente = prev.find(
-        (item) => item.id === produtoId && item.tamanho === tamanho
-      );
-      if (itemExistente) {
-        return prev.map((item) =>
-          item.id === produtoId && item.tamanho === tamanho
-            ? { ...item, quantidade: item.quantidade + quantidade }
-            : item
-        );
-      } else {
-        return [...prev, novoItem];
-      }
-    });
-
-    setEstoque((prev) =>
-      prev.map((item) =>
-        item.id === produtoId
-          ? { ...item, quantidadeDisponivel: item.quantidadeDisponivel - quantidade }
-          : item
-      )
-    );
-
-    setProdutoSelecionado(null);
-    if (produtoId === 2) {
-      setTamanhoSelecionado((prev) => ({ ...prev, 2: null }));
-    }
-  };
-
-  const removerProdutoCarrinho = (produto) => {
-    setCarrinho((prev) => prev.filter((item) => !(item.id === produto.id && item.tamanho === produto.tamanho)));
-
-    setEstoque((prev) =>
-      prev.map((item) =>
-        item.id === produto.id
-          ? { ...item, quantidadeDisponivel: item.quantidadeDisponivel + produto.quantidade }
-          : item
-      )
-    );
-  };
-
-  const calcularTotal = () => {
-    return carrinho.reduce((total, item) => total + item.preco * item.quantidade, 0).toFixed(2);
-  };
-
-  const quantidadeTotal = carrinho.reduce((total, item) => total + item.quantidade, 0);
 
   return (
-  
-
     <LayoutPublic>
     
       <div id="carouselExample" className="carousel slide" data-bs-ride="carousel">
@@ -203,32 +102,32 @@ export default function HomePage() {
                     )}
                   </div>
                   <div className="card-body text-center">
-  <h5 className="fw-bolder">{produto.nome}</h5>
-  <p>R$ {Number(produto.preco).toFixed(2)}</p>
-  <p>Estoque: {produto.quantidadeDisponivel}</p>
+                  <h5 className="fw-bolder">{produto.nome}</h5>
+                  <p>R$ {Number(produto.preco).toFixed(2)}</p>
+                  <p>Estoque: {produto.quantidadeDisponivel}</p>
 
-  {produto.tamanhos && (
-    <div className="mb-2">
-      <small>Escolha o tamanho:</small>
-      <div className="d-flex justify-content-center flex-wrap">
-        {/* {produto.tamanhos.map((tamanho) => ( */}
-        {['P', 'M', 'G', 'GG'].map((tamanho) => ( 
-          <button
-            key={tamanho}
-            className={`btn btn-sm ${tamanhoSelecionado[produto.id] === tamanho ? "btn-primary" : "btn-outline-primary"} me-1 mb-1`}
-            onClick={() => setTamanhoSelecionado((prev) => ({ ...prev, [produto.id]: tamanho }))}
-          >
-            {tamanho}
-          </button>
-        ))}
-      </div>
-    </div>
-  )}
+                  {produto.tamanhos && (
+                    <div className="mb-2">
+                      <small>Escolha o tamanho:</small>
+                      <div className="d-flex justify-content-center flex-wrap">
+                        {/* {produto.tamanhos.map((tamanho) => ( */}
+                        {['P', 'M', 'G', 'GG'].map((tamanho) => ( 
+                          <button
+                            key={tamanho}
+                            className={`btn btn-sm ${tamanhoSelecionado[produto.id] === tamanho ? "btn-primary" : "btn-outline-primary"} me-1 mb-1`}
+                            onClick={() => setTamanhoSelecionado((prev) => ({ ...prev, [produto.id]: tamanho }))}
+                          >
+                            {tamanho}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
 
-  <button className="btn btn-outline-dark" onClick={() => adicionarAoCarrinho(produto)}>
-    Adicionar ao Carrinho
-  </button>
-</div>
+                  <button className="btn btn-outline-dark" onClick={() => adicionarAoCarrinho(produto)}>
+                    Adicionar ao Carrinho
+                  </button>
+                </div>
 
                 </div>
               </div>
@@ -310,7 +209,6 @@ export default function HomePage() {
                     ))}
                   </ul>
                 )}
-                <p className="mt-3">Total: R${calcularTotal()}</p>
               </div>
               <div className="modal-footer">
                 <button className="btn btn-primary">Finalizar Compra</button>
